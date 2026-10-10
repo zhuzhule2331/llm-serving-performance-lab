@@ -1230,7 +1230,7 @@ def main():
         print()
         print("=" * 80)
         print(
-            "EXP07-A FORMAL COMPLETE"
+            "EXP08 FORMAL COMPLETE"
         )
         print("=" * 80)
 

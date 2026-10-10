@@ -38,8 +38,9 @@ engine. Practitioners still have to pick a value. The usual advice ("bigger is b
 throughput") is a statement about *one* traffic mix.
 
 This repository is the measurement infrastructure and the evidence behind a narrower claim:
-that the right MBT is **workload-dependent** within the regime tested here, and that the reason
-is traceable to **remaining local prefill work** rather than to decode speed.
+that the right MBT is **workload-dependent** within the regime tested here, and that the observed
+high-concurrency benefit is **associated with remaining local prefill work** rather than faster
+steady-state decode.
 
 ## What is in here
 
@@ -70,8 +71,10 @@ These are load-bearing — please read them before quoting any number above.
 
 - **The workload is text serving.** The model `Qwen3-VL-8B-Instruct` is multimodal, but **no
   images were served** in any experiment here. This is not a multimodal-serving result.
-- **Single GPU.** All formal experiments ran on one **RTX 3090** at a **220 W** power limit,
-  under WSL2. Results do **not** transfer automatically to H100/A100 or to multi-GPU serving.
+- **Single GPU.** Exp08 and Exp11 formal serving experiments ran on one **RTX 3090** at a
+  **220 W** power limit under WSL2. In Exp12, condition C has a contemporaneous **220 W**
+  record; conditions A/B have **UNKNOWN** power state. Results do **not** transfer automatically
+  to H100/A100 or to multi-GPU serving.
 - **Exp12 profiled selected conditions, not the full factorial.** Three conditions
   (C1×MBT2048, C8×MBT2048, C8×MBT4096). The mechanism reading is therefore *converging
   evidence*, not a direct causal proof.
