@@ -60,6 +60,7 @@ ROOT = Path(__file__).resolve().parent
 
 NAMESPACE_MAP = (
     ROOT
+    / "configs"
     / "exp11_formal_namespace_map.csv"
 )
 

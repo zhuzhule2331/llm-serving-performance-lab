@@ -1,25 +1,47 @@
 # Reproduction guide
 
-Two levels of reproduction are possible, and they are **not** the same thing:
-
-| Level | What it needs | Status in this repo |
-|---|---|---|
-| **A. Re-analyze / re-plot** | Python only | ✅ fully supported |
-| **B. Re-run the serving experiments** | 1× RTX 3090, vLLM 0.28.0, Nsight Systems | ⚠️ scripted but **not verified in this environment** |
+This repository supports **different levels of reproduction**, and they are not the same thing.
+Read the level table before assuming anything runs.
 
 ---
 
-## 0. Environment
+## 0. Reproduction levels
+
+| Level | What it means | Status |
+|---|---|---|
+| **A** | **Published aggregate verification** — re-check the documented numbers against `results/` | ✅ **SUPPORTED** |
+| **B** | **Figure regeneration** — rebuild the 4 figures from `results/` | ✅ **SUPPORTED** |
+| **C** | **Experiment code static / import validation** — `py_compile`, imports, CLI surface, path resolution | ✅ **SUPPORTED** |
+| **D** | **Fresh GPU serving reproduction from a clean clone** — start vLLM and re-run the campaigns | ❌ **NOT VERIFIED** |
+| **E** | **Exp12 raw trace re-analysis** — recompute the timeline summary from the profiler captures | ❌ **NOT POSSIBLE FROM THIS REPO** |
+
+> **A/B/C passing does not imply D.** No experiment was executed while preparing this repository.
+> Level E is impossible because the raw `.sqlite` / `.nsys-rep` captures are not published.
+
+---
+
+## 1. Levels A and B — run these (no GPU needed)
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp env.example .env        # then edit
+
+# Level A — assert every documented number against the frozen CSVs
+python3 scripts/verify_results.py          # expect: 28 checks, 0 failures
+
+# Level B — regenerate the four figures from results/
+python3 figures/make_figures.py
+
+# environment report (static; never runs an experiment)
+python3 scripts/check_environment.py
 ```
+
+`figures/make_figures.py` reads only `results/*.csv` and **asserts** the values it expects, so a
+mismatch fails loudly rather than producing a silently wrong chart.
 
 `env.example` documents every configurable path. The frozen scripts originally had these
 hard-coded to the experiment host; they are now environment variables **with the same effect**.
-See [`../../PUBLIC_CODE_CHANGELOG.md`](../../PUBLIC_CODE_CHANGELOG.md).
+See [`public-code-changelog.md`](public-code-changelog.md).
 
 | Variable | Meaning | Default |
 |---|---|---|
@@ -29,72 +51,107 @@ See [`../../PUBLIC_CODE_CHANGELOG.md`](../../PUBLIC_CODE_CHANGELOG.md).
 | `VLLM_HOST` / `VLLM_PORT` | OpenAI-compatible endpoint | `127.0.0.1` / `8000` |
 | `RESULTS_DIR` | output dir used by the analysis scripts | `results` |
 
-> ⚠️ `API_KEY` in the client is the literal string `"EMPTY"`. That is vLLM's placeholder for a
-> server started **without** `--api-key`. It is not a credential.
+> ⚠️ `API_KEY` in the client is the literal string `"EMPTY"` — vLLM's placeholder for a server
+> started **without** `--api-key`. It is not a credential.
 
 ---
 
-## A. Re-analyze and re-plot (no GPU needed)
+## 2. Level C — what static validation covers
 
-```bash
-# static checks
-python3 scripts/check_environment.py
-python3 scripts/verify_results.py
+| Check | Command |
+|---|---|
+| byte-compile all modules | `python3 scripts/smoke_test.py` |
+| import resolution | same |
+| CLI surface | same |
+| frozen-artifact assertions | `python3 scripts/verify_results.py` |
 
-# regenerate the figures from the frozen CSVs
-python3 figures/make_figures.py
-```
-
-`figures/make_figures.py` reads only `results/*.csv` and **asserts** the values it expects, so a
-mismatch fails loudly rather than producing a silently wrong chart.
+**`py_compile` PASS ≠ runtime PASS.** See [`public-repo-audit.md`](public-repo-audit.md) §3.
 
 ---
 
-## B. Re-run the experiments (single RTX 3090)
+## 3. Which files are actually runnable
 
-> **Not executed here.** This section documents how the original campaign was driven. It has not
-> been validated in this repository's environment. Treat it as a procedure, not a tested path.
+**Read this before typing any command.** Most of `experiments/` is **archival / reference code**
+that ran on the experiment host under a specific driver. Only four entry points expose a CLI.
 
-### B1. Start the vLLM server at a given MBT
+| File | Has `--help`? | Can it run from a clean clone? |
+|---|---|---|
+| `common/request_client.py` | ✅ | the burst client; needs a live vLLM server |
+| `experiments/exp11_prefix_mbt/formal_runner.py` | ✅ | **dry-run path only** — see §4.2 |
+| `experiments/exp11_prefix_mbt/formal_execute.py` | ✅ | needs a GPU, a running vLLM server, and `--execute` |
+| `experiments/exp11_prefix_mbt/recover_block2.py` | ✅ | executes the block-replacement policy; needs campaign dirs (not published) |
+| `experiments/exp08_mbt_concurrency/runner.py` | ❌ **no parser** | archival driver — see §4.1 |
+| `experiments/exp08_mbt_concurrency/preflight.py` | ❌ **no parser** | archival |
+| `experiments/exp11_prefix_mbt/analyze_formal.py` | ❌ **no parser** | needs a merged-campaign directory (not published) |
+| `experiments/exp11_prefix_mbt/finalize_merge.py` | ❌ **no parser** | needs campaign directories (not published) |
+| `experiments/exp12_decode_profiling/analyze_timeline.py` | ❌ **no parser** | **reference implementation only** — see §4.3 |
 
-```bash
-$VLLM_BIN serve "$MODEL_PATH" \
-  --host 127.0.0.1 --port 8000 \
-  --max-num-seqs 16 \
-  --max-model-len 8192 \
-  --max-num-batched-tokens 2048 \
-  --enable-chunked-prefill \
-  --no-enable-prefix-caching          # Exp08 / Exp12 ; Exp11 drops this flag
+> Commands such as `runner.py --help` or `analyze_timeline.py --help` **do not exist**. Those
+> files accept no arguments; invoking them starts real work or fails on missing data.
+
+---
+
+## 4. Level D and E — not verified / not possible
+
+> **Not executed here.** These sections document how the original campaign was driven. They have
+> **not** been validated in this repository's environment. Treat them as a procedure.
+
+### 4.1 Exp08 — archival driver
+
+`runner.py` is the frozen campaign driver. It orchestrates the split-plot order, server lifecycle,
+and validity gating, and **writes the two summary CSVs itself** (there is no separate analysis
+stage). It has no argument parser; parameters are module constants. It expects a live vLLM server
+on `$VLLM_HOST:$VLLM_PORT` and reaches the burst client at `common/request_client.py`.
+
+**Status: archival / reference.** The path is fixed, but the driver has not been executed from a
+clean clone. No `--help` is available.
+
+### 4.2 Exp11 — two distinct drivers
+
+| File | Role |
+|---|---|
+| `formal_runner.py` | **dry-run / planning path.** In non-dry-run mode it refuses with *"Formal execution is intentionally disabled"*. |
+| `formal_execute.py` | the **execution** path; requires `--execute`. This is what actually drove the campaign. |
+
+`formal_execute.py` verifies the frozen namespace map against a **hard-coded SHA256** before doing
+anything. The map is shipped as a **frozen input** at
+`experiments/exp11_prefix_mbt/configs/exp11_formal_namespace_map.csv` — it is *not* regenerated at
+run time.
+
+**Generation order (if you ever rebuild the workload identity):**
+
+```
+1. namespace_map.py             -> produces exp11_formal_namespace_map.csv + _SHA256.txt
+                                   (refuses to overwrite an existing map)
+2. freeze it under configs/     -> this is the workload identity
+3. formal_execute.py            -> verifies the SHA256 and refuses on mismatch
 ```
 
-MBT is a **whole-plot** factor: the server must be restarted between MBT levels.
+If you regenerate the map, its SHA256 will change and `formal_execute.py`'s hard-coded
+`EXPECTED_NAMESPACE_MAP_SHA256` will **reject** it. That is the intended fail-closed behaviour, not
+a bug: the frozen map *is* the preregistered workload identity.
 
-### B2. Drive one experiment
+Both the plan CSV and its SHA record are shipped under `configs/`. The plan's SHA256 **matches**
+the value hard-coded in `formal_runner.py` — verified in this repository.
 
-```bash
-# Exp08 — behavioral
-python3 experiments/exp08_mbt_concurrency/preflight.py
-python3 experiments/exp08_mbt_concurrency/runner.py --help
+### 4.3 Exp12 — reference implementation only
 
-# Exp11 — interaction (needs the frozen namespace map)
-python3 experiments/exp11_prefix_mbt/namespace_map.py
-python3 experiments/exp11_prefix_mbt/formal_runner.py --help
+`analyze_timeline.py` reads the **nsys-exported per-condition SQLite** and produces the marker
+counts and steady-state spacing. That `.sqlite` is **not published** (hundreds of MB, unusable
+without the matching GPU).
 
-# Exp11 — analysis / merge
-python3 experiments/exp11_prefix_mbt/finalize_merge.py --help
-python3 experiments/exp11_prefix_mbt/analyze_formal.py --help
-```
+**Therefore it cannot reproduce the timeline output from a clean clone.** It ships as the
+**analysis implementation** — the code that defines how the published numbers were computed —
+alongside the frozen outputs in `results/`.
 
-### B3. Exp12 profiling
+It has **no argument parser**.
 
-See [`../experiments/exp12_decode_profiling/profiling_commands.md`](../experiments/exp12_decode_profiling/profiling_commands.md)
-for the exact `nsys profile` invocations and the SQLite export step, then:
+The profiler procedure is documented in
+[`../experiments/exp12_decode_profiling/profiling_commands.md`](../experiments/exp12_decode_profiling/profiling_commands.md)
+as **recorded settings plus a clearly labelled reconstructed invocation** — the exact original
+command was not recorded in the frozen evidence.
 
-```bash
-python3 experiments/exp12_decode_profiling/analyze_timeline.py --help
-```
-
-### B4. Preconditions you must reproduce
+### 4.4 Preconditions you must reproduce
 
 These are **validity criteria**, not suggestions. A run that violates them is invalid, not noisy.
 
@@ -109,23 +166,24 @@ These are **validity criteria**, not suggestions. A run that violates them is in
 
 ---
 
-## What can and cannot match
+## 5. What can and cannot match
 
 | Quantity | Reproducible elsewhere? |
 |---|---|
-| Ratio-style results (40xx-vs-512 percentage changes, block sign consistency) | **Plausibly**, on similar hardware |
+| Ratio-style results (percentage changes, block sign consistency) | **Plausibly**, on similar hardware |
 | Absolute latencies (ms) | **No** — machine-, driver-, and power-cap-specific |
 | Kernel names and marker counts in Exp12 | **Only** with the same vLLM build and GPU |
 | The `.nsys-rep` traces | **No** — not published (size) |
 
----
-
-## Scope of validation in THIS repository
+## 6. Validation performed in THIS repository
 
 ```
-STATIC CHECK (py_compile, import, --help, path scan)   : PERFORMED
-RUNTIME REPRODUCTION (GPU / vLLM execution)            : NOT EXECUTED
+Level A  published aggregate verification   : PASS  (28 checks, 0 failures)
+Level B  figure regeneration                : PASS
+Level C  static / import validation         : PASS
+Level D  fresh GPU serving reproduction     : NOT VERIFIED
+Level E  Exp12 raw trace re-analysis        : NOT POSSIBLE (captures not published)
 ```
 
-This repository was prepared on a machine **without a GPU and without vLLM installed**. No
-runtime result is claimed. See [`../../PUBLIC_REPO_AUDIT.md`](../../PUBLIC_REPO_AUDIT.md).
+Prepared on a machine **without vLLM and without Nsight Systems**. No runtime result is claimed.
+See [`public-repo-audit.md`](public-repo-audit.md).

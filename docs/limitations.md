@@ -46,6 +46,7 @@ Read this before quoting any number in this repository.
 | "this is multimodal serving" | the workload is text-only |
 | "profiler numbers are serving numbers" | profiler timing ≠ serving timing |
 | "Exp11-H4 was falsified" | it is **NOT ESTABLISHED** (the antecedent did not hold robustly). It was **Exp12-H4** that was falsified — the two are different hypotheses. |
+| "Exp12-H4 is falsified" (unqualified) | the falsification is scoped: **for the profiled trace only**. It is not a general claim about other GPUs, models, or traces. See [`case-study.md` §3.4](case-study.md) for the frozen status vocabulary. |
 
 ## 5. Terminology that must stay hedged
 

@@ -20,8 +20,8 @@ reuse and re-test the prediction that came out of Exp12.
 
 | File | Purpose |
 |---|---|
-| `formal_runner.py` | formal campaign driver for the Exp11 factorial |
-| `formal_execute.py` | execution-side driver used by the block-recovery path |
+| `formal_runner.py` | **dry-run / planning path.** In non-dry-run mode it refuses with *"Formal execution is intentionally disabled"*. Has `--help`. |
+| `formal_execute.py` | **the execution path** — requires `--execute`. This is what drove the campaign (and the Block 2 replacement). Has `--help`. |
 | `prefix_core.py` | shared core: workload construction, cell execution, condition-summary building, validity |
 | `namespace_map.py` | builds and freezes the namespace map (54 replicas / 54 namespaces) |
 | `namespace_reconstruction_audit.py` | independent audit: rebuilds rendered lengths + shared-prefix SHA256 and compares to the frozen map |
@@ -88,7 +88,7 @@ no runtime search during formal execution
 
 | | Status |
 |---|---|
-| **Exp12-H4** (larger MBT produces faster/tighter steady decode) | **FALSIFIED** — steady decode spacing did not improve |
+| **Exp12-H4** (larger MBT produces faster/tighter steady decode) | **FALSIFIED for the profiled trace** — steady decode spacing did not improve |
 | **Exp11-H4** (if MBT4096 stays beneficial under PHIGH, MBT effects are not solely explained by uncached prefill volume) | **NOT ESTABLISHED** — the conditional premise did not hold robustly (PHIGH gain only +0.25%, not block-consistent) |
 
 "Exp11-H4 was falsified" is a **wrong** statement.

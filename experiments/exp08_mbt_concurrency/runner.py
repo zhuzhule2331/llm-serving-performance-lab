@@ -56,7 +56,10 @@ VLLM_HOME = _os.environ.get("VLLM_HOME", "./")
 
 
 
-BURST_SCRIPT = ROOT / "exp08_burst_FROZEN.py"
+# Public-repo portability: the frozen archive kept the client next to the runner as
+# `exp08_burst_FROZEN.py`. The public layout publishes that same file once, as
+# `common/request_client.py`. Same file, same behaviour — path only.
+BURST_SCRIPT = (ROOT / ".." / ".." / "common" / "request_client.py").resolve()
 
 FORMAL_SEED = 2026100801
 

@@ -1,9 +1,3 @@
-# =============================================================================
-# Source  : llm_serving_portfolio_20261008/raw_bench/exp12_decode_profiling/exp12_protocol.txt
-# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
-# Frozen  : this file is the FINAL public-facing implementation used in the
-#           formal campaign; it is a copy, the original is unmodified.
-# =============================================================================
 Exp12 Decode Profiling
 
 Goal:

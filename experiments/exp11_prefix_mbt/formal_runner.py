@@ -65,11 +65,13 @@ ROOT = Path(__file__).resolve().parent
 
 PLAN_PATH = (
     ROOT
+    / "configs"
     / "exp11_preregistered_plan.csv"
 )
 
 PLAN_HASH_PATH = (
     ROOT
+    / "configs"
     / "exp11_preregistered_plan_SHA256.txt"
 )
 

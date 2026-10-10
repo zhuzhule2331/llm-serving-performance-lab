@@ -1,9 +1,3 @@
-# =============================================================================
-# Source  : llm_serving_portfolio_20261008/raw_bench/exp08_mbt_concurrency/exp08_formal_protocol.txt
-# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
-# Frozen  : this file is the FINAL public-facing implementation used in the
-#           formal campaign; it is a copy, the original is unmodified.
-# =============================================================================
 Exp08 Formal
 MBT × Concurrency
 

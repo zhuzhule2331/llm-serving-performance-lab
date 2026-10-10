@@ -54,8 +54,8 @@ decode-dominant phase.
 
 | File | Purpose |
 |---|---|
-| `analyze_timeline.py` | reads the nsys-exported per-condition SQLite, counts `prepare_prefill` markers, measures `64x64` steady spacing, emits the timeline summary |
-| `profiling_commands.md` | the exact `nsys profile` invocations and export steps |
+| `analyze_timeline.py` | reads the nsys-exported per-condition SQLite, counts `prepare_prefill` markers, measures `64x64` steady spacing, emits the timeline summary. **No argument parser, and its input `.sqlite` is not published — it ships as the analysis implementation (reference), not as a runnable reproducer.** |
+| `profiling_commands.md` | recorded profiler settings plus a clearly labelled reconstructed invocation (the exact original command was not recorded) |
 | `configs/exp12_protocol.txt` | frozen protocol |
 
 ---

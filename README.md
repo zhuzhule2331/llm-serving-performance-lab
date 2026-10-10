@@ -91,7 +91,8 @@ These are load-bearing — please read them before quoting any number above.
 **Raw profiler captures are omitted because of size.** The `.nsys-rep` / `.sqlite` traces are
 hundreds of MB and are not useful without the matching GPU. This repository instead contains:
 
-- the profiler **commands and workload definitions** (`experiments/exp12_decode_profiling/`),
+- the profiler **recorded settings** plus a clearly labelled **reconstructed** invocation,
+  and the workload definitions (`experiments/exp12_decode_profiling/`),
 - the **post-processing script** (`analyze_timeline.py`),
 - the **machine-readable timeline summary** and hypothesis status (`results/`),
 - the **figures** derived from them.
@@ -109,7 +110,7 @@ Python dependencies are in [`requirements.txt`](requirements.txt); configurable 
 The code in `common/` and `experiments/` is a **copy** of the frozen scripts that produced the
 formal campaign. The originals are unmodified. Every change made during public-repo preparation
 — there is exactly one class: absolute host paths replaced by environment variables — is listed
-in [`../PUBLIC_CODE_CHANGELOG.md`](../PUBLIC_CODE_CHANGELOG.md). No measurement, scheduling, or
+in [`docs/public-code-changelog.md`](docs/public-code-changelog.md). No measurement, scheduling, or
 statistical logic was altered.
 
 Evidence boundary: results in `results/` are **aggregates derived from the frozen formal

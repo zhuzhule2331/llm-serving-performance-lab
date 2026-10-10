@@ -97,7 +97,9 @@ Condition C has contemporaneous power-boundary evidence (220.00 W); A/B do not.
 | Exp12-H1 (C1 MBT effect small) | **NOT DIRECTLY TESTED BY EXP12** (C1×MBT4096 not profiled) |
 | Exp12-H2 (MBT2048 more fragmented at C8) | **SUPPORTED** (markers 9 vs 5) |
 | Exp12-H3 (MBT4096 reaches stable decode earlier) | **SUPPORTED** (~655.7 ms earlier) |
-| **Exp12-H4** (MBT4096 produces faster/tighter steady decode) | **FALSIFIED for the profiled trace** |
+| **Exp12-H4** (MBT4096 produces faster/tighter steady decode) | **FALSIFIED for the profiled trace**¹ |
+
+> ¹ **Status vocabulary.** The frozen Exp12 record (`results/exp12_summary.txt`) states `NOT SUPPORTED / FALSIFIED FOR THIS TRACE.` — both terms are from the same sentence. The machine-readable token in `results/exp12_hypothesis_status.csv` is `NOT_SUPPORTED`. All three renderings are the **same frozen verdict**, scoped to **this trace** — not a general claim about other hardware, models, or workloads.
 
 See [`../figures/fig4_exp12_prefill_transition.png`](../figures/fig4_exp12_prefill_transition.png).
 

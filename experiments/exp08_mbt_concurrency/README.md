@@ -19,7 +19,7 @@ without claiming a mechanism.
 
 | File | Purpose |
 |---|---|
-| `runner.py` | formal campaign driver: split-plot order, server lifecycle calls, validity gating, **and aggregation into the two summary CSVs** |
+| `runner.py` | formal campaign driver: split-plot order, server lifecycle calls, validity gating, **and aggregation into the two summary CSVs**. **No argument parser — archival reference code, not a `--help`-able CLI.** |
 | `preflight.py` | pre-campaign environment / server checks |
 | `configs/exp08_formal_protocol.txt` | frozen validity + interpretation rules |
 | `configs/exp08_formal_preregistered_order.txt` | frozen block/MBT execution order |

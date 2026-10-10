@@ -44,7 +44,7 @@ Which file does what, and which frozen artifact each number comes from.
 |---|---|
 | `experiments/exp12_decode_profiling/analyze_timeline.py` | reads the nsys-exported per-condition SQLite, counts `prepare_prefill` markers, measures `64x64` steady spacing, emits the timeline summary |
 | `experiments/exp12_decode_profiling/configs/exp12_protocol.txt` | frozen protocol |
-| `experiments/exp12_decode_profiling/profiling_commands.md` | the exact `nsys profile` invocations and export steps (**raw `.nsys-rep` / `.sqlite` are not published**) |
+| `experiments/exp12_decode_profiling/profiling_commands.md` | recorded profiler settings plus a clearly labelled reconstructed invocation (the exact original command was not recorded) (**raw `.nsys-rep` / `.sqlite` are not published**) |
 
 **Result artifacts**
 
@@ -96,6 +96,27 @@ results/exp08_condition_summary.csv
         → results/exp11_interaction_summary.csv (the interaction)
         → figures/
 ```
+
+## Which files are runnable
+
+Most of `experiments/` is **archival / reference code** driven by the frozen campaign scripts.
+Only these expose a CLI, and only these behaviours were observed statically:
+
+| File | `--help` | Runnable from a clean clone? |
+|---|---|---|
+| `common/request_client.py` | ✅ | the burst client; requires a live vLLM server |
+| `experiments/exp11_prefix_mbt/formal_runner.py` | ✅ | dry-run path only; non-dry-run refuses with *"Formal execution is intentionally disabled"* |
+| `experiments/exp11_prefix_mbt/formal_execute.py` | ✅ | requires a GPU, a live vLLM server, and `--execute` |
+| `experiments/exp11_prefix_mbt/recover_block2.py` | ✅ | executes the block-replacement policy; requires campaign dirs (not published) |
+| `experiments/exp11_prefix_mbt/analyze_formal.py` | ❌ no parser | requires a merged-campaign directory (not published) |
+| `experiments/exp11_prefix_mbt/finalize_merge.py` | ❌ no parser | requires campaign directories (not published) |
+| `experiments/exp08_mbt_concurrency/runner.py` | ❌ no parser | **archival** — frozen campaign driver |
+| `experiments/exp08_mbt_concurrency/preflight.py` | ❌ no parser | **archival** |
+| `experiments/exp12_decode_profiling/analyze_timeline.py` | ❌ no parser | **reference implementation only** — its input `.sqlite` is not published |
+
+Reproduction levels: see [`reproduction-guide.md`](reproduction-guide.md) §0.
+
+---
 
 ## Note on code sharing
 

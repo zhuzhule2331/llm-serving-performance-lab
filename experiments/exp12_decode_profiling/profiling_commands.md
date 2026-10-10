@@ -69,8 +69,12 @@ nsys export --type sqlite --output="exp12_${COND}.sqlite" "exp12_${COND}.nsys-re
 ## 3. Post-processing
 
 ```bash
-python3 analyze_timeline.py --help
+python3 analyze_timeline.py
 ```
+
+> ⚠️ `analyze_timeline.py` has **no argument parser** — there is no `--help`. It reads the
+> per-condition `.sqlite` files (not published) and writes the timeline summary. It ships as the
+> **analysis implementation / reference**, not as a runnable reproducer.
 
 The script reads the per-condition SQLite and produces:
 
