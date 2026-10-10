@@ -1,0 +1,5 @@
+hypothesis,status,evidence
+H1,NOT_DIRECTLY_TESTED_BY_EXP12,"C1 x MBT4096 was not profiled; behavioral evidence exists in Exp08"
+H2,SUPPORTED,"prepare_prefill instances decreased from 9 at C8 MBT2048 to 5 at C8 MBT4096"
+H3,SUPPORTED,"final prepare_prefill marker moved from 4531.314 ms to 3875.643 ms, approximately 655.7 ms earlier"
+H4,NOT_SUPPORTED,"steady-state 64x64 spacing was 34.200 ms at MBT2048 versus 34.412 ms at MBT4096"

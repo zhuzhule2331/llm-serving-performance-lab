@@ -1,0 +1,96 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp08_mbt_concurrency/exp08_formal_protocol.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+Exp08 Formal
+MBT × Concurrency
+
+Research question:
+Does the latency-throughput effect of scheduler token budget
+change as request concurrency increases?
+
+Fixed workload:
+prompt = 2048
+completion = 128
+
+Fixed server configuration:
+GPU0 power limit = 220 W
+max_num_seqs = 16
+max_model_len = 8192
+gpu_memory_utilization = 0.90
+APC OFF
+chunked prefill ON
+
+Factors:
+
+MBT:
+512
+2048
+4096
+
+Concurrency:
+1
+2
+4
+8
+
+Design:
+3 randomized blocks.
+
+MBT is the whole-plot factor because changing MBT
+requires restarting vLLM.
+
+MBT position is balanced across the three blocks.
+
+Within each MBT server, the four concurrency conditions
+are independently randomized.
+
+Per condition:
+1 excluded warmup
+2 measured bursts
+
+Total:
+108 bursts
+72 measured bursts
+6 measured bursts per MBT × concurrency cell
+
+Formal burst validity:
+- client VALIDITY PASS
+- exact prompt target
+- exact completion target
+- requested concurrency equals target
+- launch skew <= 25 ms
+- preemption delta = 0
+
+Server-condition validity:
+- GPU0 power limit = 220 W
+- correct MBT
+- max_num_seqs = 16
+- max_model_len = 8192
+- gpu_memory_utilization = 0.90
+- APC OFF
+- chunked prefill ON
+
+Failure rule:
+Any formal validity failure invalidates the affected block.
+Do not selectively retain runs from a failed block.
+
+Primary metrics:
+mean TTFT
+mean TPOT
+makespan
+request throughput
+output throughput
+
+Interpretation rules:
+- At C>1, TTFT includes queueing and scheduler delay.
+- Output throughput and request throughput are not
+  independent evidence because completion length is fixed.
+- Compare MBTs within each concurrency.
+- Compare concurrency scaling within each MBT.
+- No composite weighted performance score is preregistered.
+
+Preflight evidence is validity-only and is not merged
+with formal performance results.

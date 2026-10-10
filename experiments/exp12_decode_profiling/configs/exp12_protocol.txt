@@ -1,0 +1,75 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp12_decode_profiling/exp12_protocol.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+Exp12 Decode Profiling
+
+Goal:
+Explain the mechanism behind the Exp08 observation that
+MBT4096 becomes more beneficial at high concurrency.
+
+Fixed workload:
+prompt = 2048
+completion = 128
+
+Fixed server config:
+GPU0 power limit = 220 W
+max_num_seqs = 16
+max_model_len = 8192
+gpu_memory_utilization = 0.90
+APC OFF
+chunked prefill ON
+
+Conditions:
+A = C1 × MBT2048
+B = C8 × MBT2048
+C = C8 × MBT4096
+
+Role of conditions:
+A -> B isolates concurrency effect.
+B -> C isolates MBT effect at high concurrency.
+
+Per condition:
+1 clean preflight burst
+1 Nsight Systems mechanism capture
+
+Validity:
+- client VALIDITY PASS
+- exact prompt/completion usage
+- target concurrency exact
+- launch skew <= 25 ms
+- preemption delta = 0
+- correct MBT
+- power limit = 220 W
+
+Profiling purpose:
+Mechanism explanation only.
+Profiler timing does not replace Exp08 formal serving evidence.
+
+Preregistered hypotheses:
+H1:
+At C1, MBT effect should be small because scheduler
+fragmentation and contention are limited.
+
+H2:
+At C8, MBT2048 should require more prefill scheduling waves
+than MBT4096.
+
+H3:
+At C8, MBT4096 should reduce prefill fragmentation and allow
+an earlier or cleaner transition into decode-dominant execution.
+
+H4:
+If the Exp08 TPOT improvement reflects better decode-phase
+execution cadence, decode-step spacing should become tighter
+or more stable for C8×MBT4096 than C8×MBT2048.
+
+Alternative outcome:
+If decode-step spacing is similar, the serving improvement may
+instead be explained mainly by reduced prefill fragmentation,
+phase overlap, or request completion ordering.
+
+Do not infer exact causal scheduler internals from kernel
+patterns alone.

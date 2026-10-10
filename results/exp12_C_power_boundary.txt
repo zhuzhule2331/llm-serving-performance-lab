@@ -1,0 +1,8 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp12_decode_profiling/exp12_C_power_boundary.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+power.limit [W], memory.used [MiB], temperature.gpu
+220.00 W, 20563 MiB, 58

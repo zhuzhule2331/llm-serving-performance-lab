@@ -1,0 +1,26 @@
+# Direct dependencies only — this is NOT a `pip freeze` of the experiment host.
+#
+# Version policy:
+#   * exact pins are given ONLY where a version is confirmed by frozen evidence
+#   * otherwise the constraint is left open rather than guessed
+#
+# Confirmed from frozen evidence:
+#   vLLM    0.28.0+cu129   (vLLM server banner captured in the 2026-09-24 session snapshot)
+#   Python  3.12.14        (same snapshot)
+
+# ---- Serving engine (system-level install; not pip-installable in the usual way) ----
+# vllm==0.28.0           # installed in the experiment venv; see docs/reproduction-guide.md
+
+# ---- Experiment client / runners ----
+openai>=1.0              # AsyncOpenAI + DefaultAioHttpClient
+aiohttp>=3.9             # required by common/exp02_formal.py and common/exp03_formal.py
+
+# ---- Analysis & figures ----
+matplotlib>=3.8
+pandas>=2.0              # optional; the shipped scripts themselves use the stdlib `csv` module
+
+# ---- Notes ----
+# * NVIDIA Nsight Systems is a SYSTEM dependency, not a pip package.
+#   Used at >= 2024.5 with CuptiUseRawGpuTimestamps=false under WSL2.
+# * SQLite access in experiments/exp12_decode_profiling/analyze_timeline.py
+#   uses the Python standard library `sqlite3`.

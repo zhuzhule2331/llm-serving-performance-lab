@@ -1,0 +1,190 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp12_decode_profiling/exp12_timeline_analysis.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+
+============================================================================
+A_C1_MBT2048
+============================================================================
+prepare_prefill instances: 1
+prepare relative starts (ms):
+   1: 0.000
+
+ALL gemv2T: instances=128
+  intervals=127
+  mean=28.918 ms
+  median=28.315 ms
+  p10=27.010 ms
+  p90=31.406 ms
+  min=26.570 ms
+  max=44.755 ms
+  stdev=2.243 ms
+  10 largest intervals:
+    #12: 44.755 ms
+    #11: 37.321 ms
+    #44: 33.197 ms
+    #13: 32.792 ms
+    #47: 32.586 ms
+    #80: 32.545 ms
+    #111: 32.520 ms
+    #113: 31.860 ms
+    #45: 31.854 ms
+    #14: 31.817 ms
+
+ALL 64x64 GEMM: instances=0
+
+--- after final prepare_prefill ---
+gemv2T after-final: instances=128
+  intervals=127
+  mean=28.918 ms
+  median=28.315 ms
+  p10=27.010 ms
+  p90=31.406 ms
+  min=26.570 ms
+  max=44.755 ms
+  stdev=2.243 ms
+  10 largest intervals:
+    #12: 44.755 ms
+    #11: 37.321 ms
+    #44: 33.197 ms
+    #13: 32.792 ms
+    #47: 32.586 ms
+    #80: 32.545 ms
+    #111: 32.520 ms
+    #113: 31.860 ms
+    #45: 31.854 ms
+    #14: 31.817 ms
+
+64x64 after-final: instances=0
+
+============================================================================
+B_C8_MBT2048
+============================================================================
+prepare_prefill instances: 9
+prepare relative starts (ms):
+   1: 0.000
+   2: 544.410
+   3: 1115.790
+   4: 1670.138
+   5: 2237.824
+   6: 2811.245
+   7: 3390.630
+   8: 3960.818
+   9: 4531.314
+
+ALL gemv2T: instances=2
+  intervals=1
+  mean=8371.491 ms
+  median=8371.491 ms
+  p10=8371.491 ms
+  p90=8371.491 ms
+  min=8371.491 ms
+  max=8371.491 ms
+  stdev=0.000 ms
+  10 largest intervals:
+    #1: 8371.491 ms
+
+ALL 64x64 GEMM: instances=134
+  intervals=133
+  mean=58.424 ms
+  median=34.390 ms
+  p10=33.173 ms
+  p90=35.883 ms
+  min=28.824 ms
+  max=579.200 ms
+  stdev=111.492 ms
+  10 largest intervals:
+    #4: 579.200 ms
+    #3: 573.212 ms
+    #6: 570.957 ms
+    #5: 570.565 ms
+    #2: 568.239 ms
+    #1: 553.838 ms
+    #7: 45.109 ms
+    #9: 38.017 ms
+    #68: 36.639 ms
+    #11: 36.441 ms
+
+--- after final prepare_prefill ---
+gemv2T after-final: instances=1
+
+64x64 after-final: instances=127
+  intervals=126
+  mean=34.200 ms
+  median=34.195 ms
+  p10=33.161 ms
+  p90=35.331 ms
+  min=28.824 ms
+  max=38.017 ms
+  stdev=1.120 ms
+  10 largest intervals:
+    #2: 38.017 ms
+    #61: 36.639 ms
+    #4: 36.441 ms
+    #6: 36.182 ms
+    #12: 36.156 ms
+    #14: 35.969 ms
+    #93: 35.932 ms
+    #116: 35.685 ms
+    #39: 35.683 ms
+    #8: 35.595 ms
+
+============================================================================
+C_C8_MBT4096
+============================================================================
+prepare_prefill instances: 5
+prepare relative starts (ms):
+   1: 0.000
+   2: 539.581
+   3: 1646.624
+   4: 2757.590
+   5: 3875.643
+
+ALL gemv2T: instances=1
+
+ALL 64x64 GEMM: instances=131
+  intervals=130
+  mean=55.405 ms
+  median=34.550 ms
+  p10=33.333 ms
+  p90=35.840 ms
+  min=28.800 ms
+  max=1117.825 ms
+  stdev=141.944 ms
+  10 largest intervals:
+    #2: 1117.825 ms
+    #1: 1110.617 ms
+    #3: 603.829 ms
+    #5: 37.138 ms
+    #35: 36.260 ms
+    #97: 36.161 ms
+    #69: 36.038 ms
+    #18: 36.006 ms
+    #46: 35.957 ms
+    #73: 35.888 ms
+
+--- after final prepare_prefill ---
+gemv2T after-final: instances=0
+
+64x64 after-final: instances=128
+  intervals=127
+  mean=34.412 ms
+  median=34.514 ms
+  p10=33.331 ms
+  p90=35.718 ms
+  min=28.800 ms
+  max=37.138 ms
+  stdev=1.104 ms
+  10 largest intervals:
+    #2: 37.138 ms
+    #32: 36.260 ms
+    #94: 36.161 ms
+    #66: 36.038 ms
+    #15: 36.006 ms
+    #43: 35.957 ms
+    #70: 35.888 ms
+    #72: 35.860 ms
+    #120: 35.849 ms
+    #17: 35.843 ms

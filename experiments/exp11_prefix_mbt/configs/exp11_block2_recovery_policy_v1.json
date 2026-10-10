@@ -1,0 +1,61 @@
+{
+  "experiment": "Exp11 Prefix Reuse x Scheduler Token Budget",
+  "recovery_policy_version": "v1",
+  "failed_attempt": {
+    "result_dir": "<EXPERIMENT_HOST>/llm/bench/exp11_prefix_mbt/exp11_formal_20261008_175541",
+    "campaign_status": "INVALID",
+    "affected_block": 2,
+    "failed_formal_row_id": 48,
+    "condition": {
+      "mbt": 512,
+      "reuse": "PHIGH",
+      "phase": "MEASURED",
+      "rep": 2
+    },
+    "hard_validity_failure": {
+      "metric": "launch_skew_ms",
+      "observed": 88.22578101535328,
+      "threshold": 25.0
+    },
+    "other_validity_checks": "PASS",
+    "preemption_delta": 0
+  },
+  "failure_classification": {
+    "classification": "localized launch-skew validity failure",
+    "engine_dead_error": "shutdown consequence, not causal",
+    "evidence": "SIGTERM and shutdown precede EngineDeadError",
+    "gpu_kernel_error_observed": false,
+    "jit_warning_observed": "_gumbel_sample_kernel inference-time JIT warning",
+    "jit_warning_changes_protocol": false
+  },
+  "recovery_rule": {
+    "unit_replaced": "entire logical block 2",
+    "discard_original_block2_from_formal_aggregation": true,
+    "rerun_rows": "28-54",
+    "reuse_original_frozen_order": true,
+    "reuse_original_frozen_namespace_map": true,
+    "reuse_original_workload_identity": true,
+    "change_thresholds": false,
+    "change_warmup_count": false,
+    "change_server_configuration": false,
+    "retry_individual_failed_row": false,
+    "fresh_server_per_whole_plot": true,
+    "replacement_attempts_allowed_under_this_policy": 1
+  },
+  "replacement_acceptance": {
+    "expected_executions": 27,
+    "expected_measured_bursts": 18,
+    "expected_total_requests": 216,
+    "expected_measured_requests": 144,
+    "all_measurement_valid_required": true,
+    "all_preemption_zero_required": true,
+    "launch_skew_threshold_ms": 25.0,
+    "fail_closed": true
+  },
+  "final_merge_rule": {
+    "block1_source": "original formal v1",
+    "block2_source": "replacement attempt if and only if replacement passes",
+    "block3_source": "original formal v1",
+    "original_block2_must_not_enter_final_dataset": true
+  }
+}

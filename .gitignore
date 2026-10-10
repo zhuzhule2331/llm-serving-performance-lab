@@ -1,0 +1,70 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- Secrets / local config ----
+.env
+.env.*
+!.env.example
+secrets*.json
+*.pem
+*.key
+
+# ---- Local paths & runtime output ----
+outputs/
+results_raw/
+run_logs/
+*.log
+!docs/**/*.log
+
+# ---- Profiler captures (hundreds of MB; deliberately not published) ----
+*.nsys-rep
+*.ncu-rep
+*.sqlite
+*.sqlite3
+*.qdrep
+
+# ---- Model weights & caches ----
+models/
+hf_cache/
+checkpoints/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.onnx
+*.trt
+*.engine
+
+# ---- Archives ----
+*.tar
+*.tar.gz
+*.tgz
+*.tar.zst
+*.zip
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ---- NOTE ----
+# The following ARE intended to be tracked and are therefore NOT ignored:
+#   results/*.csv          frozen aggregate evidence
+#   results/*.txt          frozen timeline / power-boundary records
+#   results/*.json         frozen artifact hash manifest
+#   figures/*.png          publication figures
+#   docs/**, experiments/**, common/**, scripts/**

@@ -1,0 +1,117 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp11_prefix_mbt/exp11_protocol.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+Exp11 Prefix Reuse x Scheduler Token Budget
+
+Research question:
+Does prefix reuse change the latency-throughput effect of the
+scheduler token budget at high concurrency?
+
+Fixed workload:
+prompt_tokens = 2048
+completion_tokens = 128
+concurrency = 8
+
+Factors:
+
+Prefix reuse:
+P0
+P50
+PHIGH
+
+Scheduler token budget:
+MBT512
+MBT2048
+MBT4096
+
+Fixed server config:
+GPU0 power limit = 220 W
+max_num_seqs = 16
+max_model_len = 8192
+gpu_memory_utilization = 0.90
+prefix caching = ON
+chunked prefill = ON
+
+Design:
+3 randomized split-plot blocks.
+
+MBT is the whole-plot factor because changing MBT requires
+server restart.
+
+Prefix condition is randomized within each MBT server.
+
+Per cell:
+1 excluded warmup
+2 measured bursts
+
+Total:
+9 cells
+54 measured bursts
+27 excluded warmups
+81 total bursts
+
+Primary metrics:
+mean TTFT
+mean TPOT
+makespan
+request throughput
+output throughput
+
+Cache evidence:
+raw prefix-cache hits
+app-adjusted cache hits
+observed compute tokens
+observed hit ratio
+
+Validity:
+- client VALIDITY PASS
+- exact prompt usage
+- exact completion usage
+- concurrency = 8
+- launch skew <= 25 ms
+- preemption delta = 0
+- power limit = 220 W
+- correct MBT
+- APC ON
+- chunked prefill ON
+- max_num_seqs = 16
+- max_model_len = 8192
+- prefix telemetry consistent with condition
+
+Cross-run cache contamination is a validity failure.
+
+Each burst must use a unique namespace so only the intended
+burst-specific primer can create prefix reuse.
+
+Hypotheses:
+
+H1:
+Increasing prefix reuse should reduce TTFT.
+
+H2:
+Under P0, MBT behavior should qualitatively resemble the
+high-concurrency behavior observed previously.
+
+H3:
+As prefix reuse increases, the advantage of a larger MBT may
+decrease because less local prefill compute remains to be
+fragmented by the scheduler token budget.
+
+H4:
+If MBT4096 remains beneficial even under PHIGH, then scheduler
+token budget effects cannot be explained only by uncached
+prefill token volume.
+
+Interpretation rule:
+Serving benchmark establishes interaction.
+Profiling is required for exact mechanism claims.
+
+Failure rule:
+A validity failure invalidates the affected block.
+Do not selectively retain valid-looking runs from an invalid
+block.
+
+Pilot / diagnostic results are not formal performance evidence.

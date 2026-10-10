@@ -1,0 +1,26 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp08_mbt_concurrency/exp08_formal_preregistered_order.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+seed: 2026100801
+
+base MBT order:
+[4096, 2048, 512]
+
+BLOCK 1: [4096, 2048, 512]
+  MBT=4096: [('C2', 2), ('C1', 1), ('C8', 8), ('C4', 4)]
+  MBT=2048: [('C2', 2), ('C1', 1), ('C4', 4), ('C8', 8)]
+  MBT=512: [('C1', 1), ('C4', 4), ('C8', 8), ('C2', 2)]
+
+BLOCK 2: [2048, 512, 4096]
+  MBT=2048: [('C4', 4), ('C8', 8), ('C1', 1), ('C2', 2)]
+  MBT=512: [('C4', 4), ('C2', 2), ('C8', 8), ('C1', 1)]
+  MBT=4096: [('C2', 2), ('C4', 4), ('C8', 8), ('C1', 1)]
+
+BLOCK 3: [512, 4096, 2048]
+  MBT=512: [('C8', 8), ('C2', 2), ('C1', 1), ('C4', 4)]
+  MBT=4096: [('C8', 8), ('C2', 2), ('C1', 1), ('C4', 4)]
+  MBT=2048: [('C2', 2), ('C1', 1), ('C8', 8), ('C4', 4)]
+

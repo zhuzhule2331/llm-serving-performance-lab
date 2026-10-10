@@ -1,0 +1,319 @@
+# =============================================================================
+# Source  : llm_serving_portfolio_20261008/raw_bench/exp12_decode_profiling/exp12_summary.txt
+# Copied  : verbatim except for the changes listed in ../../PUBLIC_CODE_CHANGELOG.md
+# Frozen  : this file is the FINAL public-facing implementation used in the
+#           formal campaign; it is a copy, the original is unmodified.
+# =============================================================================
+Exp12 Decode Profiling
+STATUS: COMPLETE / FROZEN
+
+============================================================
+1. Research Question
+============================================================
+
+Why does MBT4096 become more beneficial than MBT2048 at high
+concurrency for the exact-2048 -> exact-128 serving workload?
+
+Exp08 formal serving evidence established the performance
+interaction. Exp12 profiling is used only for mechanism
+explanation.
+
+============================================================
+2. Fixed Configuration
+============================================================
+
+Model:
+Qwen3-VL-8B-Instruct
+
+Workload:
+prompt_tokens = 2048
+completion_tokens = 128
+
+Server:
+max_model_len = 8192
+max_num_seqs = 16
+gpu_memory_utilization = 0.90
+chunked prefill = ON
+prefix caching = OFF
+
+GPU:
+GPU0
+power limit = 220 W
+
+Profiler:
+Nsight Systems 2024.5.1
+trace = cuda,nvtx,osrt
+CuptiUseRawGpuTimestamps=false
+
+============================================================
+3. Conditions
+============================================================
+
+A:
+C1 x MBT2048
+
+B:
+C8 x MBT2048
+
+C:
+C8 x MBT4096
+
+Purpose:
+
+A -> B:
+observe how concurrency changes the execution regime.
+
+B -> C:
+observe how MBT changes execution structure at C8.
+
+============================================================
+4. Capture Validity
+============================================================
+
+Condition A:
+client VALIDITY = PASS
+preemption = 0
+nsys GPU kernels captured = YES
+
+Condition B:
+client VALIDITY = PASS
+launch skew = 11.791 ms
+preemption = 0
+nsys GPU kernels captured = YES
+
+Condition C:
+client VALIDITY = PASS
+launch skew = 12.262 ms
+preemption = 0
+nsys GPU kernels captured = YES
+
+Condition C contemporaneous power boundary:
+220.00 W
+
+Profiler-time serving performance is diagnostic only.
+It does not replace Exp08 unprofiled formal serving evidence.
+
+============================================================
+5. Condition A: C1 Decode Marker
+============================================================
+
+Profiled client TPOT:
+28.519 ms/token
+
+gemv2T:
+instances = 128
+start-to-start intervals = 127
+mean interval = 28.918 ms
+median interval = 28.315 ms
+
+Interpretation:
+
+Under the C1 execution regime, consecutive gemv2T launch
+spacing closely tracks client-observed TPOT.
+
+This establishes gemv2T as a useful empirical decode-step
+marker for this C1 trace.
+
+It does NOT establish a universal one-kernel-per-token rule.
+
+============================================================
+6. Concurrency Changes Kernel Regime
+============================================================
+
+At C1:
+gemv2T is a dominant decode-region kernel family.
+
+At C8:
+gemv2T mostly disappears and 64x64 BF16 GEMM becomes a useful
+decode-region timing marker.
+
+Therefore kernel selection changes with batch/concurrency shape.
+
+A different kernel pattern proves a changed execution regime,
+not the exact bottleneck by itself.
+
+============================================================
+7. B vs C: Prefill Fragmentation
+============================================================
+
+B = C8 x MBT2048
+
+prepare_prefill instances:
+9
+
+relative starts:
+0.000
+544.410
+1115.790
+1670.138
+2237.824
+2811.245
+3390.630
+3960.818
+4531.314 ms
+
+
+C = C8 x MBT4096
+
+prepare_prefill instances:
+5
+
+relative starts:
+0.000
+539.581
+1646.624
+2757.590
+3875.643 ms
+
+
+Observed:
+
+prepare_prefill event count:
+9 -> 5
+
+final prepare_prefill marker:
+4531.314 ms -> 3875.643 ms
+
+difference:
+approximately 655.7 ms earlier for MBT4096
+
+Interpretation:
+
+MBT4096 reduces observed prefill scheduling/execution
+fragmentation at C8 and allows the trace to reach the stable
+decode-dominant region earlier.
+
+Do NOT equate prepare_prefill instance count directly with an
+exact scheduler-wave count.
+
+============================================================
+8. B vs C: Steady-State Decode Cadence
+============================================================
+
+B = C8 x MBT2048
+
+64x64 GEMM after final prepare_prefill:
+instances = 127
+intervals = 126
+mean = 34.200 ms
+median = 34.195 ms
+stdev = 1.120 ms
+
+
+C = C8 x MBT4096
+
+64x64 GEMM after final prepare_prefill:
+instances = 128
+intervals = 127
+mean = 34.412 ms
+median = 34.514 ms
+stdev = 1.104 ms
+
+
+Observed:
+
+steady-state decode spacing is essentially unchanged.
+
+MBT4096 does NOT show faster steady-state decode cadence in
+this trace.
+
+============================================================
+9. Hypothesis Status
+============================================================
+
+H1:
+At C1, MBT effect should be small.
+
+STATUS:
+NOT DIRECTLY TESTED BY EXP12 PROFILING.
+
+Exp08 serving data supports the behavioral observation, but
+Exp12 did not profile C1 x MBT4096.
+
+
+H2:
+At C8, MBT2048 should exhibit more fragmented prefill execution
+than MBT4096.
+
+STATUS:
+SUPPORTED.
+
+Evidence:
+prepare_prefill events = 9 vs 5.
+
+
+H3:
+At C8, MBT4096 should reduce prefill fragmentation and allow an
+earlier transition into stable decode-dominant execution.
+
+STATUS:
+SUPPORTED.
+
+Evidence:
+final prepare_prefill marker approximately 655.7 ms earlier.
+
+
+H4:
+If MBT4096 improves TPOT by making steady-state decode faster,
+its decode-step spacing should be tighter than MBT2048.
+
+STATUS:
+NOT SUPPORTED / FALSIFIED FOR THIS TRACE.
+
+Evidence:
+34.200 ms vs 34.412 ms steady-state 64x64 spacing.
+
+============================================================
+10. Main Mechanism Conclusion
+============================================================
+
+At high concurrency, the benefit of a larger scheduler token
+budget is primarily associated with reduced prefill
+fragmentation and reduced prefill/decode phase interference,
+rather than faster steady-state decode execution.
+
+This is a mechanism interpretation supported jointly by:
+
+1. Exp08 formal serving behavior;
+2. Exp12 Nsight Systems execution traces;
+3. reduced prepare_prefill fragmentation;
+4. nearly unchanged steady-state decode spacing.
+
+============================================================
+11. Important Boundaries
+============================================================
+
+- Profiler timing does not replace formal serving benchmark
+  timing.
+
+- Kernel instance counts do not directly equal token counts or
+  scheduler-wave counts.
+
+- CUDA API host time is not GPU kernel execution time.
+
+- Kernel selection changes with batch shape.
+
+- The mechanism conclusion applies to the tested workload and
+  configuration. It is not a universal vLLM property.
+
+- The stale "Exp07" display label in the reused burst client is
+  a presentation/provenance label issue only. Raw logs are
+  preserved unchanged.
+
+============================================================
+12. Final Status
+============================================================
+
+Exp12 Decode Profiling:
+COMPLETE / FROZEN
+
+Formal behavior evidence:
+Exp08
+
+Mechanism evidence:
+Exp12
+
+Main result:
+MBT4096's high-concurrency advantage is associated primarily
+with lower prefill fragmentation / phase interference, not
+faster steady-state decode kernels.
