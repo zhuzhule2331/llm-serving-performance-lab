@@ -77,11 +77,14 @@ the arithmetic stays FP32 — INT8 applies to the **weight storage only**.
 
 Source: [`environment.json`](environment.json), captured on the server.
 
-> ⚠️ **CUDA toolkit mismatch, recorded as-is:** the runtime ships with CUDA **12.9.79**, but
-> `nvcc` reports **12.6.85**. The extension was therefore compiled by a 12.6 toolchain and
-> loaded into a 12.9 runtime. This is exactly the kind of detail that can change ABI or
-> kernel-selection behaviour, which is one reason the microbenchmark numbers are treated as
-> machine-specific rather than portable.
+> ⚠️ **Two CUDA versions were observed on this machine, and they differ:** the PyTorch CUDA
+> runtime reports **12.9.79**, while `nvcc` reports **12.6.85**.
+>
+> **The toolchain actually used to compile the extension is not recorded** — the build
+> command was not archived. This repository therefore does **not** claim the extension was
+> built with 12.6; the two observed versions are reported as environment facts only.
+> A toolkit/runtime mismatch of this kind can affect ABI or kernel selection, which is one
+> reason the microbenchmark numbers are treated as machine-specific rather than portable.
 >
 > Only the Nsight Systems version is still missing from the archive.
 
@@ -556,14 +559,18 @@ python scripts/test_real_lm_head.py     # real weight + microbenchmark
 
 ### 9.6 Serving benchmark
 
-```bash
-# Terminal 1 — start the server for the current stage (INT8_LM_HEAD_ENABLE=0/1)
-INT8_LM_HEAD_ENABLE=0 bash scripts/launch_server.sh
+The ABBA/BAAB runners **start and stop their own vLLM server for each stage**. They
+require **port 8002 to be free** before they begin.
 
-# Terminal 2 — run the ordered comparison (starts/stops servers itself)
+```bash
+# Make sure nothing is listening on 8002, then run the comparison:
 python scripts/run_graph_abba.py
 python scripts/run_graph_baab.py
 ```
+
+> ⚠️ **`scripts/launch_server.sh` is a manual debugging helper only.** It occupies port
+> 8002, so it **must not** be running when the automatic benchmark starts — the runner
+> aborts with `Port 8002 is occupied`. Stop it first if you used it for manual testing.
 
 ### 9.7 Quality suite
 

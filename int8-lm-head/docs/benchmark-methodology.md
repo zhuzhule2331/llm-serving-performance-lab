@@ -131,7 +131,9 @@ not be quoted as the project's speedup.
 | NVCC | 12.6.85 |
 | GPU driver | 572.83 |
 
-> The NVCC / runtime mismatch (12.6 compiler, 12.9 runtime) is recorded as-is. It is one
+> Two CUDA versions were observed: `nvcc` **12.6.85** and the PyTorch CUDA runtime
+> **12.9.79**. **The toolchain actually used to build the extension is not recorded**, so
+> this is an environment observation, not a build fact. A toolkit/runtime mismatch is one
 > more reason the absolute latencies are machine-specific.
 
 ---

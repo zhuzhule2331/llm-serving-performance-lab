@@ -69,9 +69,13 @@ BF16 下该权重约 **1.16 GiB**，每个 decode step 都要完整读一遍。
 
 来源：[`environment.json`](environment.json)(服务器端采集)。
 
-> ⚠️ **CUDA 工具链版本不一致,如实记录:** 运行时是 CUDA **12.9.79**,但 `nvcc` 报告 **12.6.85**。
-> 也就是说扩展由 12.6 工具链编译、加载进 12.9 运行时。这正是可能影响 ABI 与 kernel 选择的细节,
-> 也是这些 microbenchmark 数字只能当作**机器特定结果**、不可移植的原因之一。
+> ⚠️ **这台机器上观测到两个不同的 CUDA 版本:** PyTorch 侧 CUDA runtime 为 **12.9.79**,
+> `nvcc` 报告 **12.6.85**。
+>
+> **扩展实际使用的编译工具链未被记录** —— 构建命令没有归档。因此本仓库**不声称**
+> 扩展由 12.6 编译;两个版本只作为**环境观测值**如实列出。
+> 这种 toolkit / runtime 不一致可能影响 ABI 或 kernel 选择,也是这些 microbenchmark
+> 数字只能当作**机器特定结果**、不可移植的原因之一。
 >
 > 目前归档里仍然缺失的只有 Nsight Systems 版本。
 
@@ -498,14 +502,18 @@ python scripts/test_real_lm_head.py     # 真实权重 + microbenchmark
 
 ### 9.6 服务级 benchmark
 
-```bash
-# 终端 1 —— 为当前阶段启动服务(INT8_LM_HEAD_ENABLE=0/1)
-INT8_LM_HEAD_ENABLE=0 bash scripts/launch_server.sh
+ABBA/BAAB 运行器会**为每个阶段自行启动并关闭 vLLM 服务**。运行前必须保证
+**8002 端口空闲**。
 
-# 终端 2 —— 有序对照(脚本会自行启停服务)
+```bash
+# 确认 8002 没有被占用,然后直接运行:
 python scripts/run_graph_abba.py
 python scripts/run_graph_baab.py
 ```
+
+> ⚠️ **`scripts/launch_server.sh` 只是手工调试工具。** 它会占用 8002 端口,
+> **不能**与自动 benchmark 同时运行 —— 否则运行器会以 `Port 8002 is occupied` 中止。
+> 如果之前用它做过手工测试,请先停掉。
 
 ### 9.7 质量评测
 
