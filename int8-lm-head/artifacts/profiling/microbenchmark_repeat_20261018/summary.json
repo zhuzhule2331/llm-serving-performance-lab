@@ -1,0 +1,32 @@
+[
+  {
+    "run": 1,
+    "started": "2026-10-18T20:28:52.887385+08:00",
+    "bf16_ms": 1.5713,
+    "int8_ms": 1.2058,
+    "speedup": 1.3031182617349477,
+    "gpu0_temp_before_c": 33,
+    "gpu0_temp_after_c": 43,
+    "log": "artifacts/profiling/microbenchmark_repeat_20261018/run_1.txt"
+  },
+  {
+    "run": 2,
+    "started": "2026-10-18T20:28:57.151929+08:00",
+    "bf16_ms": 1.4141,
+    "int8_ms": 1.0885,
+    "speedup": 1.2991272393201652,
+    "gpu0_temp_before_c": 43,
+    "gpu0_temp_after_c": 45,
+    "log": "artifacts/profiling/microbenchmark_repeat_20261018/run_2.txt"
+  },
+  {
+    "run": 3,
+    "started": "2026-10-18T20:29:01.457021+08:00",
+    "bf16_ms": 1.41,
+    "int8_ms": 0.7127,
+    "speedup": 1.978392030307282,
+    "gpu0_temp_before_c": 45,
+    "gpu0_temp_after_c": 46,
+    "log": "artifacts/profiling/microbenchmark_repeat_20261018/run_3.txt"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "stages": {
+    "A1_BF16": {
+      "median_ms": 24.385,
+      "mean_ms": 24.476458333333333,
+      "count": 12
+    },
+    "B1_INT8": {
+      "median_ms": 24.0783,
+      "mean_ms": 24.102975,
+      "count": 12
+    },
+    "B2_INT8": {
+      "median_ms": 24.384900000000002,
+      "mean_ms": 24.384433333333334,
+      "count": 12
+    },
+    "A2_BF16": {
+      "median_ms": 25.77395,
+      "mean_ms": 25.762316666666667,
+      "count": 12
+    }
+  },
+  "bf16_mean_ms": 25.1193875,
+  "int8_mean_ms": 24.243704166666667,
+  "int8_minus_bf16_ms": -0.8756833333333311,
+  "speed_ratio": 1.036120030475266,
+  "results_csv": "artifacts/profiling/graph_abba_20261018_180248/results.csv"
+}

@@ -68,3 +68,16 @@ Thumbs.db
 #   results/*.json         frozen artifact hash manifest
 #   figures/*.png          publication figures
 #   docs/**, experiments/**, common/**, scripts/**
+
+# ---- Compiled CUDA / C++ artifacts ----
+build/
+*.so
+*.o
+*.obj
+*.pyd
+*.dll
+*.dylib
+
+# ---- Partial / temporary artifacts ----
+*.tmp
+*.partial

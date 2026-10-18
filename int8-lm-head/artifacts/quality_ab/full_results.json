@@ -1,0 +1,937 @@
+[
+  {
+    "category": "基本语言能力",
+    "kind": "open",
+    "question": "把这句话准确翻译成英文：算子变快不一定意味着端到端请求延迟下降。",
+    "criteria": "保留“不一定”的逻辑含义；准确翻译算子及端到端延迟。",
+    "id": "Q001",
+    "actual_prompt": "把这句话准确翻译成英文：算子变快不一定意味着端到端请求延迟下降。",
+    "answers": {
+      "BF16": {
+        "text": "Faster operators do not necessarily mean a decrease in end-to-end request latency.",
+        "finish_reason": "stop",
+        "output_tokens": 17,
+        "elapsed_s": 0.9639886599907186,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "Faster operators do not necessarily mean a decrease in end-to-end request latency.",
+        "finish_reason": "stop",
+        "output_tokens": 17,
+        "elapsed_s": 0.799306314002024,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本语言能力",
+    "kind": "open",
+    "question": "某系统低并发时延迟很低，高并发时吞吐提升，但排队使尾延迟增加。请用不超过25个汉字概括主要现象。",
+    "criteria": "语言简洁；准确保留吞吐提升与尾延迟增加。",
+    "id": "Q002",
+    "actual_prompt": "某系统低并发时延迟很低，高并发时吞吐提升，但排队使尾延迟增加。请用不超过25个汉字概括主要现象。",
+    "answers": {
+      "INT8": {
+        "text": "低并发快，高并发吞吐增但尾延迟升",
+        "finish_reason": "stop",
+        "output_tokens": 14,
+        "elapsed_s": 0.6650109530019108,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "低并发快，高并发吞吐增但尾延迟升",
+        "finish_reason": "stop",
+        "output_tokens": 14,
+        "elapsed_s": 0.6728610079881037,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本语言能力",
+    "kind": "open",
+    "question": "把“我们需要在接下来的后续阶段进一步继续检查这个问题”改写成简洁、自然的书面中文。",
+    "criteria": "减少冗余；不改变原句意图；表达自然。",
+    "id": "Q003",
+    "actual_prompt": "把“我们需要在接下来的后续阶段进一步继续检查这个问题”改写成简洁、自然的书面中文。",
+    "answers": {
+      "BF16": {
+        "text": "我们将在下一阶段继续跟进这个问题。",
+        "finish_reason": "stop",
+        "output_tokens": 9,
+        "elapsed_s": 0.4524750800046604,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "我们将在下一阶段继续跟进这个问题。",
+        "finish_reason": "stop",
+        "output_tokens": 9,
+        "elapsed_s": 0.450198285994702,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本语言能力",
+    "kind": "open",
+    "question": "Use exactly two English sentences to explain the difference between latency and throughput.",
+    "criteria": "恰好两句英文；清楚区分单请求耗时与单位时间处理量。",
+    "id": "Q004",
+    "actual_prompt": "Use exactly two English sentences to explain the difference between latency and throughput.",
+    "answers": {
+      "INT8": {
+        "text": "Latency is the time it takes for a single data packet to travel from source to destination, measuring speed of response.  \nThroughput is the total amount of data successfully transferred over a given period, measuring overall capacity or volume.",
+        "finish_reason": "stop",
+        "output_tokens": 47,
+        "elapsed_s": 2.0905528620060068,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "Latency is the time it takes for a single data packet to travel from source to destination, measuring speed of response.  \nThroughput is the total amount of data successfully transferred over a given period, measuring overall capacity or volume.",
+        "finish_reason": "stop",
+        "output_tokens": 47,
+        "elapsed_s": 2.27860809500271,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本语言能力",
+    "kind": "open",
+    "question": "严格输出一个合法 JSON 对象，只有 title 和 risks 两个字段。title 为字符串“CUDA优化”，risks 为恰好两项字符串数组，列出两种常见优化风险。不准添加 Markdown 代码块。",
+    "criteria": "JSON 语法合法；字段准确；两项合理风险；没有多余内容。",
+    "id": "Q005",
+    "actual_prompt": "严格输出一个合法 JSON 对象，只有 title 和 risks 两个字段。title 为字符串“CUDA优化”，risks 为恰好两项字符串数组，列出两种常见优化风险。不准添加 Markdown 代码块。",
+    "answers": {
+      "BF16": {
+        "text": "{\n  \"title\": \"CUDA优化\",\n  \"risks\": [\"内存带宽瓶颈\", \"线程块尺寸选择不当\"]\n}",
+        "finish_reason": "stop",
+        "output_tokens": 30,
+        "elapsed_s": 1.398172811997938,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "{\n  \"title\": \"CUDA优化\",\n  \"risks\": [\"内存带宽瓶颈\", \"线程块尺寸不当\"]\n}",
+        "finish_reason": "stop",
+        "output_tokens": 29,
+        "elapsed_s": 1.3232954739942215,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "基本计算能力",
+    "kind": "closed",
+    "question": "计算 37×24，结果是多少？",
+    "accepted": [
+      "888"
+    ],
+    "id": "Q006",
+    "actual_prompt": "计算 37×24，结果是多少？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "可以使用分配律简化计算：  \n37 × 24 = 37 × (20 + 4) = 37×20 + 37×4  \n37×20 = 740  \n37×4 = 148  \n740 + 148 = 888\n\n答案：888",
+        "finish_reason": "stop",
+        "output_tokens": 81,
+        "elapsed_s": 3.5531659359985497,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "可以使用分配律简化计算：  \n37 × 24 = 37 × (20 + 4) = 37×20 + 37×4  \n37×20 = 740  \n37×4 = 148  \n740 + 148 = 888\n\n答案：888",
+        "finish_reason": "stop",
+        "output_tokens": 81,
+        "elapsed_s": 3.8478921099886065,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本计算能力",
+    "kind": "closed",
+    "question": "1250 的 8% 是多少？",
+    "accepted": [
+      "100"
+    ],
+    "id": "Q007",
+    "actual_prompt": "1250 的 8% 是多少？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：将1250乘以8%，即1250 × 0.08。  \n1250 × 0.08 = 100。\n\n答案：100",
+        "finish_reason": "stop",
+        "output_tokens": 46,
+        "elapsed_s": 2.1052746009954717,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "思路：将1250乘以8%，即1250 × 0.08。  \n1250 × 0.08 = 100。\n\n答案：100",
+        "finish_reason": "stop",
+        "output_tokens": 46,
+        "elapsed_s": 2.078844563991879,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本计算能力",
+    "kind": "closed",
+    "question": "汽车以48公里/小时行驶45分钟，行驶多少公里？",
+    "accepted": [
+      "36"
+    ],
+    "id": "Q008",
+    "actual_prompt": "汽车以48公里/小时行驶45分钟，行驶多少公里？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：将速度单位统一为公里/分钟，或时间单位统一为小时。45分钟等于3/4小时，速度48公里/小时，距离 = 速度 × 时间 = 48 × 3/4 = 36公里。\n\n答案：36",
+        "finish_reason": "stop",
+        "output_tokens": 60,
+        "elapsed_s": 2.674781367997639,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：将速度单位统一为公里/分钟，或时间单位统一为小时。45分钟等于3/4小时，速度48公里/小时，距离 = 速度 × 时间 = 48 × 3/4 = 36公里。\n\n答案：36",
+        "finish_reason": "stop",
+        "output_tokens": 60,
+        "elapsed_s": 2.857408294992638,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本计算能力",
+    "kind": "closed",
+    "question": "计算 7/8 - 1/3，结果写成最简分数。",
+    "accepted": [
+      "13/24"
+    ],
+    "id": "Q009",
+    "actual_prompt": "计算 7/8 - 1/3，结果写成最简分数。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "要计算 7/8 - 1/3，首先需要找到两个分数的公分母。8 和 3 的最小公倍数是 24。\n\n将两个分数通分：\n7/8 = (7×3)/(8×3) = 21/24  \n1/3 = (1×8)/(3×8) = 8/24\n\n然后相减：\n21/24 - 8/24 = 13/24\n\n13 和 24 互质，因此 13/24 已是最简分数。\n\n答案：13/24",
+        "finish_reason": "stop",
+        "output_tokens": 137,
+        "elapsed_s": 6.131585458992049,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "要计算 7/8 - 1/3，首先需要找到两个分数的公分母。8 和 3 的最小公倍数是 24。\n\n将两个分数通分：\n7/8 = (7×3)/(8×3) = 21/24  \n1/3 = (1×8)/(3×8) = 8/24\n\n然后相减：\n21/24 - 8/24 = 13/24\n\n13 和 24 互质，因此 13/24 已是最简分数。\n\n答案：13/24",
+        "finish_reason": "stop",
+        "output_tokens": 137,
+        "elapsed_s": 6.008896033003111,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本计算能力",
+    "kind": "closed",
+    "question": "计算 0.125×240。",
+    "accepted": [
+      "30"
+    ],
+    "id": "Q010",
+    "actual_prompt": "计算 0.125×240。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：0.125 是 1/8，因此可以将 0.125 × 240 看作 240 ÷ 8。240 ÷ 8 = 30。\n\n答案：30",
+        "finish_reason": "stop",
+        "output_tokens": 57,
+        "elapsed_s": 2.5435897870047484,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：0.125 是 1/8，因此可以将 0.125 × 240 看作 240 ÷ 8。240 ÷ 8 = 30。\n\n答案：30",
+        "finish_reason": "stop",
+        "output_tokens": 57,
+        "elapsed_s": 2.784916838994832,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本推理思考能力",
+    "kind": "closed",
+    "question": "如果部署失败，系统一定报警。现在确定系统没有报警，且规则没有例外。能推断部署没有失败吗？",
+    "accepted": [
+      "是",
+      "能",
+      "可以"
+    ],
+    "id": "Q011",
+    "actual_prompt": "如果部署失败，系统一定报警。现在确定系统没有报警，且规则没有例外。能推断部署没有失败吗？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "根据逻辑推理，这是一个典型的“逆否命题”问题。原命题是：“如果部署失败，则系统一定报警”，即：部署失败 → 系统报警。\n\n其逆否命题是：系统没有报警 → 部署没有失败。这是逻辑上等价的。\n\n现在已知：系统没有报警，且规则没有例外（即原命题成立，无反例），因此可以推出：部署没有失败。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 93,
+        "elapsed_s": 4.226035643994692,
+        "auto_correct": false
+      },
+      "INT8": {
+        "text": "根据逻辑推理，这是一个典型的“逆否命题”问题。原命题是：“如果部署失败，则系统一定报警”，即：部署失败 → 系统报警。\n\n其逆否命题是：系统没有报警 → 部署没有失败。这是逻辑上等价的。\n\n现在已知：系统没有报警，且规则没有例外（即原命题成立，无反例），因此可以推出：部署没有失败。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 93,
+        "elapsed_s": 4.102888230001554,
+        "auto_correct": false
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本推理思考能力",
+    "kind": "closed",
+    "question": "如果缓存命中，就会打印hit日志。现在看到hit日志，一定能反推出缓存命中吗？",
+    "accepted": [
+      "否",
+      "不能",
+      "不可以"
+    ],
+    "id": "Q012",
+    "actual_prompt": "如果缓存命中，就会打印hit日志。现在看到hit日志，一定能反推出缓存命中吗？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "缓存命中时打印hit日志是系统设计的正常行为，但日志本身是结果而非原因。理论上，只要系统逻辑是“命中则打印”，那么看到hit日志就可反推当时发生了命中。但需考虑日志可能被误触发、伪造或系统异常导致的假阳性，因此不能绝对保证。在理想、无异常的系统中，可以反推。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 89,
+        "elapsed_s": 3.968099984995206,
+        "auto_correct": false
+      },
+      "BF16": {
+        "text": "缓存命中时打印hit日志是系统设计的正常行为，但日志本身是结果而非原因。理论上，只要系统逻辑是“命中则打印”，那么看到hit日志就可反推当时发生了命中。但需考虑日志可能被误触发、伪造或系统异常导致的假阳性，因此不能绝对保证。在理想、无异常的系统中，可以反推。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 89,
+        "elapsed_s": 4.21895276599389,
+        "auto_correct": false
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本推理思考能力",
+    "kind": "closed",
+    "question": "甲比乙高，乙比丙高。三人中谁最高？",
+    "accepted": [
+      "甲"
+    ],
+    "id": "Q013",
+    "actual_prompt": "甲比乙高，乙比丙高。三人中谁最高？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：根据“甲比乙高”和“乙比丙高”，可得甲 > 乙 > 丙，因此甲最高。\n\n答案：甲",
+        "finish_reason": "stop",
+        "output_tokens": 34,
+        "elapsed_s": 1.5411384360049851,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "思路：根据“甲比乙高”和“乙比丙高”，可得甲 > 乙 > 丙，因此甲最高。\n\n答案：甲",
+        "finish_reason": "stop",
+        "output_tokens": 34,
+        "elapsed_s": 1.5039576220005983,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本推理思考能力",
+    "kind": "closed",
+    "question": "三个任务X、Y、Z，X必须在Y之前，Y必须在Z之前。最后执行哪个任务？",
+    "accepted": [
+      "Z",
+      "任务Z"
+    ],
+    "id": "Q014",
+    "actual_prompt": "三个任务X、Y、Z，X必须在Y之前，Y必须在Z之前。最后执行哪个任务？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "根据题意，任务顺序必须满足：X → Y → Z。  \n因此，最后执行的任务是Z。\n\n答案：Z",
+        "finish_reason": "stop",
+        "output_tokens": 28,
+        "elapsed_s": 1.255532409006264,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "根据题意，任务顺序必须满足：X → Y → Z。  \n因此，最后执行的任务是Z。\n\n答案：Z",
+        "finish_reason": "stop",
+        "output_tokens": 28,
+        "elapsed_s": 1.4210635030030971,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "基本推理思考能力",
+    "kind": "closed",
+    "question": "每个Thread属于一个Warp，每个Warp属于一个Block。已知Thread T属于Warp W，Warp W属于Block B，能推出T属于B吗？",
+    "accepted": [
+      "是",
+      "能",
+      "可以"
+    ],
+    "id": "Q015",
+    "actual_prompt": "每个Thread属于一个Warp，每个Warp属于一个Block。已知Thread T属于Warp W，Warp W属于Block B，能推出T属于B吗？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "是的，因为Thread属于Warp，Warp属于Block，根据集合包含关系的传递性，Thread T必然属于Block B。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 33,
+        "elapsed_s": 1.5216968289896613,
+        "auto_correct": false
+      },
+      "INT8": {
+        "text": "是的，因为Thread T属于Warp W，而Warp W属于Block B，根据层级包含关系，Thread T必然属于Block B。\n\n答案：结果",
+        "finish_reason": "stop",
+        "output_tokens": 35,
+        "elapsed_s": 1.5797786749899387,
+        "auto_correct": false
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶解题能力",
+    "kind": "closed",
+    "question": "无向带权图边为 A-B:4、A-C:2、C-B:1、B-D:5、C-D:9。A到D的最短路径总权重是多少？",
+    "accepted": [
+      "8"
+    ],
+    "id": "Q016",
+    "actual_prompt": "无向带权图边为 A-B:4、A-C:2、C-B:1、B-D:5、C-D:9。A到D的最短路径总权重是多少？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：使用Dijkstra算法或观察路径。从A出发，路径A-C-B-D权重为2+1+5=8；路径A-C-D权重为2+9=11；路径A-B-D权重为4+5=9。最短路径是A-C-B-D，总权重8。\n\n答案：8",
+        "finish_reason": "stop",
+        "output_tokens": 71,
+        "elapsed_s": 3.1850440239941236,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：使用Dijkstra算法或观察路径权重。从A出发，路径A-C-B-D权重为2+1+5=8；路径A-C-D权重为2+9=11；路径A-B-D权重为4+5=9。最短路径是A-C-B-D，总权重8。\n\n答案：8",
+        "finish_reason": "stop",
+        "output_tokens": 72,
+        "elapsed_s": 3.4600374390138313,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶解题能力",
+    "kind": "closed",
+    "question": "0/1背包容量为6，三个物品重量分别为2、3、4，价值分别为4、5、10。最大可获得价值是多少？",
+    "accepted": [
+      "14"
+    ],
+    "id": "Q017",
+    "actual_prompt": "0/1背包容量为6，三个物品重量分别为2、3、4，价值分别为4、5、10。最大可获得价值是多少？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "这是一个0/1背包问题，容量为6，物品重量和价值如下：\n\n- 物品1：重量2，价值4\n- 物品2：重量3，价值5\n- 物品3：重量4，价值10\n\n我们考虑所有可能的组合，选择总重量不超过6且总价值最大的组合。\n\n可能的组合：\n\n1. 不选任何物品：价值0\n2. 选物品1：价值4，重量2\n3. 选物品2：价值5，重量3\n4. 选物品3：价值10，重量4\n5. 选物品1+2：价值9，重量5\n6. 选物品1+3：价值14，重量6 ✅\n7. 选物品2+3：价值15，重量7 ❌（超重）\n8. 选物品1+2+3：价值19，重量9 ❌（超重）\n\n最大价值为14（选物品1和3），重量6，正好满载。\n\n答案：14",
+        "finish_reason": "stop",
+        "output_tokens": 227,
+        "elapsed_s": 10.284903198000393,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "这是一个0/1背包问题，容量为6，物品重量和价值如下：\n\n- 物品1：重量2，价值4\n- 物品2：重量3，价值5\n- 物品3：重量4，价值10\n\n我们考虑所有可能的组合，选择总重量不超过6且总价值最大的组合。\n\n可能的组合：\n\n1. 不选任何物品：价值0\n2. 只选物品1：价值4，重量2\n3. 只选物品2：价值5，重量3\n4. 只选物品3：价值10，重量4\n5. 物品1+2：价值9，重量5\n6. 物品1+3：价值14，重量6 ✅\n7. 物品2+3：价值15，重量7 ❌（超重）\n8. 物品1+2+3：价值19，重量9 ❌（超重）\n\n最大价值为14（物品1+3），重量6，正好满载。\n\n答案：14",
+        "finish_reason": "stop",
+        "output_tokens": 229,
+        "elapsed_s": 10.070906050008489,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶解题能力",
+    "kind": "closed",
+    "question": "有五个左闭右开时间区间：[1,3)、[2,5)、[3,4)、[4,7)、[5,6)。最多可以选出几个互不重叠的区间？",
+    "accepted": [
+      "3"
+    ],
+    "id": "Q018",
+    "actual_prompt": "有五个左闭右开时间区间：[1,3)、[2,5)、[3,4)、[4,7)、[5,6)。最多可以选出几个互不重叠的区间？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：贪心算法。按区间的右端点排序，每次选择右端点最小且与之前选的区间不重叠的区间。排序后为：[1,3)、[2,5)、[3,4)、[4,7)、[5,6)。选[1,3)，跳过[2,5)（重叠），选[3,4)（不重叠），跳过[4,7)（重叠），选[5,6)（不重叠）。共选3个。\n\n答案：3",
+        "finish_reason": "stop",
+        "output_tokens": 125,
+        "elapsed_s": 5.598216648999369,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：贪心算法。按区间的右端点排序，每次选择右端点最小且与之前选的区间不重叠的区间。排序后为：[1,3)、[2,5)、[3,4)、[4,7)、[5,6)。选[1,3)，跳过[2,5)（重叠），选[3,4)（不重叠），跳过[4,7)（重叠），选[5,6)（不重叠）。共选3个。\n\n答案：3",
+        "finish_reason": "stop",
+        "output_tokens": 125,
+        "elapsed_s": 5.954315569004393,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶解题能力",
+    "kind": "open",
+    "question": "编写Python函数 unique_keep_first(items)，输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。例如 ['GPU','cpu','gpu','CPU','Cuda'] 应返回 ['GPU','cpu','Cuda']。请给出代码和时间复杂度。",
+    "criteria": "正确处理大小写；保留首次顺序；代码可运行；通常为O(n)。",
+    "id": "Q019",
+    "actual_prompt": "编写Python函数 unique_keep_first(items)，输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。例如 ['GPU','cpu','gpu','CPU','Cuda'] 应返回 ['GPU','cpu','Cuda']。请给出代码和时间复杂度。",
+    "answers": {
+      "BF16": {
+        "text": "以下是实现 `unique_keep_first` 函数的代码：\n\n```python\ndef unique_keep_first(items):\n    \"\"\"\n    输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。\n    \n    Args:\n        items: 字符串列表\n        \n    Returns:\n        去重后的列表，保留首次出现的原始写法\n    \"\"\"\n    seen = set()  # 用于记录已见过的字符串（不区分大小写）\n    result = []\n    \n    for item in items:\n        # 转换为小写用于比较，但保留原始字符串\n        lower_item = item.lower()\n        if lower_item not in seen:\n            seen.add(lower_item)\n            result.append(item)  # 保留原始写法\n    \n    return result\n```\n\n**时间复杂度分析：**\n\n- **时间复杂度：O(n)**，其中 n 是输入列表的长度。\n  - 遍历列表一次：O(n)\n  - 每次 `lower()` 操作：O(1)（假设字符串长度固定或平均长度为常数）\n  - `set` 的查找和插入操作：O(1) 平均情况\n  - `result.append()`：O(1)\n  - 总体为 O(n)\n\n- **空间复杂度：O(n)**，最坏情况下所有字符串都不同，`seen` 集合和 `result` 列表各存储 n 个元素。\n\n**示例测试：**\n\n```python\n# 测试用例\ntest_list = ['GPU','cpu','gpu','CPU','Cuda']\nresult = unique_keep_first(test_list)\nprint(result)  # 输出: ['GPU', 'cpu', 'Cuda']\n\n# 验证其他情况\nprint(unique_keep_first(['a', 'A', '",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.310397182998713,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "以下是实现 `unique_keep_first` 函数的代码：\n\n```python\ndef unique_keep_first(items):\n    \"\"\"\n    输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。\n    \n    Args:\n        items: 字符串列表\n        \n    Returns:\n        去重后的列表，保留首次出现的原始写法\n    \"\"\"\n    seen = set()  # 用于记录已见过的字符串（不区分大小写）\n    result = []\n    \n    for item in items:\n        # 转换为小写检查是否已见过\n        lower_item = item.lower()\n        if lower_item not in seen:\n            seen.add(lower_item)\n            result.append(item)  # 保留原始写法\n    \n    return result\n```\n\n**时间复杂度分析：**\n\n- **时间复杂度：O(n)**，其中 n 是输入列表的长度。\n  - 遍历列表一次：O(n)\n  - 每次检查 `lower_item not in seen`：set 查找是 O(1) 平均情况\n  - 添加到 set：O(1) 平均情况\n  - 总体：O(n × 1) = O(n)\n\n- **空间复杂度：O(n)**，最坏情况下所有字符串都不重复，需要存储 n 个字符串到 `seen` set 和 `result` 列表。\n\n**示例测试：**\n\n```python\n# 测试用例\ntest_list = ['GPU','cpu','gpu','CPU','Cuda']\nresult = unique_keep_first(test_list)\nprint(result)  # 输出: ['GPU', 'cpu', 'Cuda']\n```\n\n**说明：**\n- 使用 `set` 来记录已见过的字符串（小写形式），确保 O(1) 查找效率。\n",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.847099570994033,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶解题能力",
+    "kind": "open",
+    "question": "有SQL表 events(user_id,event_id,event_time)。请写SQL，返回每位用户最新的三条事件。如果event_time相同，使用event_id降序决定先后。不足三条则全部返回。",
+    "criteria": "使用分组窗口排序或等价方案；处理时间相同；每用户最多三条。",
+    "id": "Q020",
+    "actual_prompt": "有SQL表 events(user_id,event_id,event_time)。请写SQL，返回每位用户最新的三条事件。如果event_time相同，使用event_id降序决定先后。不足三条则全部返回。",
+    "answers": {
+      "INT8": {
+        "text": "你可以使用窗口函数 `ROW_NUMBER()` 来为每个用户按 `event_time` 降序、`event_id` 降序排序，然后取每组中排名前3的记录。\n\n以下是 SQL 查询语句：\n\n```sql\nWITH ranked_events AS (\n    SELECT\n        user_id,\n        event_id,\n        event_time,\n        ROW_NUMBER() OVER (\n            PARTITION BY user_id\n            ORDER BY event_time DESC, event_id DESC\n        ) AS rn\n    FROM events\n)\nSELECT\n    user_id,\n    event_id,\n    event_time\nFROM ranked_events\nWHERE rn <= 3\nORDER BY user_id, rn;\n```\n\n### 说明：\n\n- `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_time DESC, event_id DESC)`：\n  - 按用户分组（`PARTITION BY user_id`）。\n  - 在每个用户组内，按 `event_time` 降序排序（最新事件在前），如果时间相同，则按 `event_id` 降序（大 ID 在前）。\n  - 为每行分配一个从 1 开始的序号 `rn`。\n\n- `WHERE rn <= 3`：只保留每个用户最新的 3 条记录。\n\n- 最后 `ORDER BY user_id, rn`：按用户排序，再按记录顺序排列，便于阅读。\n\n> ✅ **注意**：此查询假设 `event_time` 是可比较的日期/时间类型，且 `event_id` 是数字或可比较的类型。如果 `event_id` 是字符串，需确保排序逻辑符合预期（如按字典序降序）。\n\n---\n\n✅ **兼容性**：此写法适用于 PostgreSQL、MySQL 8.0+、SQL Server、Oracle、SQLite 3.35+",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.77079702699848,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "你可以使用窗口函数 `ROW_NUMBER()` 来为每个用户按 `event_time` 降序、`event_id` 降序排序，然后取每组中排名前3的记录。\n\n以下是 SQL 查询语句：\n\n```sql\nWITH ranked_events AS (\n    SELECT\n        user_id,\n        event_id,\n        event_time,\n        ROW_NUMBER() OVER (\n            PARTITION BY user_id\n            ORDER BY event_time DESC, event_id DESC\n        ) AS rn\n    FROM events\n)\nSELECT\n    user_id,\n    event_id,\n    event_time\nFROM ranked_events\nWHERE rn <= 3\nORDER BY user_id, rn;\n```\n\n### 说明：\n\n- `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_time DESC, event_id DESC)`：\n  - 按用户分组（`PARTITION BY user_id`）。\n  - 在每个用户组内，按 `event_time` 降序排序（最新事件优先），如果时间相同，则按 `event_id` 降序（大 ID 优先）。\n  - 为每行分配一个从 1 开始的序号 `rn`。\n\n- `WHERE rn <= 3`：只保留每个用户最新的 3 条记录。\n\n- 最后 `ORDER BY user_id, rn`：按用户排序，再按记录顺序排列，便于阅读。\n\n### 注意：\n\n- 如果某个用户事件少于 3 条，会自动返回所有记录（因为 `rn` 会从 1 开始递增，不会超过实际记录数）。\n- 如果你希望结果按用户分组显示，也可以在 `ORDER BY` 中只保留 `user_id`，或者加 `GROUP BY user_id`，但通常不需要，因为 `rn` 已经保证了顺序。\n\n✅ 这个",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.40753841699916,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶计算能力",
+    "kind": "closed",
+    "question": "计算组合数 C(12,4)。",
+    "accepted": [
+      "495"
+    ],
+    "id": "Q021",
+    "actual_prompt": "计算组合数 C(12,4)。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "组合数 C(n, k) = n! / (k! * (n - k)!)  \nC(12, 4) = 12! / (4! * 8!)  \n= (12 × 11 × 10 × 9) / (4 × 3 × 2 × 1)  \n= 11880 / 24  \n= 495\n\n答案：495",
+        "finish_reason": "stop",
+        "output_tokens": 98,
+        "elapsed_s": 4.4210290079936385,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "组合数 C(n, k) = n! / (k! * (n - k)!)  \nC(12, 4) = 12! / (4! * 8!)  \n= (12 × 11 × 10 × 9) / (4 × 3 × 2 × 1)  \n= 11880 / 24  \n= 495\n\n答案：495",
+        "finish_reason": "stop",
+        "output_tokens": 98,
+        "elapsed_s": 4.339843334004399,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶计算能力",
+    "kind": "closed",
+    "question": "计算 2^20 除以17的余数。",
+    "accepted": [
+      "16"
+    ],
+    "id": "Q022",
+    "actual_prompt": "计算 2^20 除以17的余数。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "我们计算 2^20 mod 17。\n\n注意到 2^4 = 16 ≡ -1 (mod 17)，  \n所以 2^8 = (2^4)^2 ≡ (-1)^2 = 1 (mod 17)，  \n因此 2^20 = (2^8)^2 * 2^4 ≡ 1^2 * (-1) = -1 ≡ 16 (mod 17)。\n\n答案：16",
+        "finish_reason": "stop",
+        "output_tokens": 108,
+        "elapsed_s": 4.710133415996097,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "我们计算 2^20 mod 17。\n\n注意到 2^4 = 16 ≡ -1 (mod 17)，  \n所以 2^8 = (2^4)^2 ≡ (-1)^2 = 1 (mod 17)，  \n因此 2^20 = (2^8)^2 * 2^4 ≡ 1^2 * (-1) = -1 ≡ 16 (mod 17)。\n\n答案：16",
+        "finish_reason": "stop",
+        "output_tokens": 108,
+        "elapsed_s": 5.100306007996551,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶计算能力",
+    "kind": "closed",
+    "question": "袋子里有3个红球、2个蓝球，不放回连续抽2球。两球都是红球的概率是多少？写成最简分数。",
+    "accepted": [
+      "3/10",
+      "0.3"
+    ],
+    "id": "Q023",
+    "actual_prompt": "袋子里有3个红球、2个蓝球，不放回连续抽2球。两球都是红球的概率是多少？写成最简分数。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：不放回抽球，第一次抽到红球的概率是3/5，抽到后袋中剩2红1蓝共3球，第二次抽到红球的概率是2/3。两事件连续发生，概率相乘：(3/5) × (2/3) = 6/15 = 2/5。\n\n答案：2/5",
+        "finish_reason": "stop",
+        "output_tokens": 82,
+        "elapsed_s": 3.7311066090042004,
+        "auto_correct": false
+      },
+      "INT8": {
+        "text": "思路：不放回抽球，第一次抽到红球的概率是3/5，抽到后袋中剩2红1蓝共3球，第二次抽到红球的概率是2/3。两事件连续发生，概率相乘：(3/5) × (2/3) = 6/15 = 2/5。\n\n答案：2/5",
+        "finish_reason": "stop",
+        "output_tokens": 82,
+        "elapsed_s": 3.6285628530022223,
+        "auto_correct": false
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶计算能力",
+    "kind": "closed",
+    "question": "计算定积分：从0到2，对函数 3x^2+2x 积分。",
+    "accepted": [
+      "12"
+    ],
+    "id": "Q024",
+    "actual_prompt": "计算定积分：从0到2，对函数 3x^2+2x 积分。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：对被积函数 3x² + 2x 求原函数，即逐项积分：∫3x² dx = x³，∫2x dx = x²，所以原函数为 x³ + x² + C。代入上下限 0 和 2，计算 F(2) - F(0) = (8 + 4) - (0 + 0) = 12。\n\n答案：12",
+        "finish_reason": "stop",
+        "output_tokens": 98,
+        "elapsed_s": 4.330861070004175,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：对被积函数 3x² + 2x 求原函数，即逐项积分：∫3x² dx = x³，∫2x dx = x²，所以原函数为 x³ + x² + C。代入上下限 0 和 2，计算 F(2) - F(0) = (8 + 4) - (0 + 0) = 12。\n\n答案：12",
+        "finish_reason": "stop",
+        "output_tokens": 98,
+        "elapsed_s": 4.702383362993714,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶计算能力",
+    "kind": "closed",
+    "question": "解方程组：3x+2y=19，x-y=3。结果按照 x=数字,y=数字 的形式给出。",
+    "accepted": [
+      "x=5,y=2",
+      "x=5，y=2"
+    ],
+    "id": "Q025",
+    "actual_prompt": "解方程组：3x+2y=19，x-y=3。结果按照 x=数字,y=数字 的形式给出。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：使用代入法或加减法。这里用代入法，由第二个方程 x - y = 3 得 x = y + 3，代入第一个方程 3x + 2y = 19，得 3(y + 3) + 2y = 19，展开得 3y + 9 + 2y = 19，合并得 5y = 10，解得 y = 2，再代入 x = y + 3 得 x = 5。\n\n答案：x=5,y=2",
+        "finish_reason": "stop",
+        "output_tokens": 129,
+        "elapsed_s": 5.879636971993023,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "思路：使用代入法或加减法。这里用代入法，由第二个方程 x - y = 3 得 x = y + 3，代入第一个方程 3x + 2y = 19，得 3(y + 3) + 2y = 19，展开得 3y + 9 + 2y = 19，合并得 5y = 10，解得 y = 2，再代入 x = y + 3 得 x = 5。\n\n答案：x=5,y=2",
+        "finish_reason": "stop",
+        "output_tokens": 129,
+        "elapsed_s": 5.710018092999235,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶推理能力",
+    "kind": "closed",
+    "question": "甲乙丙三人中恰好只有一人说真话。甲说：“乙和丙都说假话。”乙说：“甲说假话。”丙说：“乙说假话。”谁说真话？",
+    "accepted": [
+      "乙",
+      "B"
+    ],
+    "id": "Q026",
+    "actual_prompt": "甲乙丙三人中恰好只有一人说真话。甲说：“乙和丙都说假话。”乙说：“甲说假话。”丙说：“乙说假话。”谁说真话？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "我们分析三人中恰好只有一人说真话。\n\n甲说：“乙和丙都说假话。”  \n乙说：“甲说假话。”  \n丙说：“乙说假话。”\n\n假设甲说真话 → 乙和丙都说假话。  \n那么乙说“甲说假话”是假话 → 甲说真话（符合）  \n丙说“乙说假话”是假话 → 乙说真话（矛盾，因为假设乙说假话）  \n→ 矛盾，排除甲说真话。\n\n假设乙说真话 → 甲说假话。  \n甲说“乙和丙都说假话”是假话 → 乙或丙至少一人说真话（符合乙说真话）  \n丙说“乙说假话”是假话 → 乙说真话（符合）  \n→ 乙和丙都说真话，但题目要求只有一人说真话 → 矛盾，排除乙说真话。\n\n假设丙说真话 → 乙说假话。  \n乙说“甲说假话”是假话 → 甲说真话（矛盾，因为只允许一人说真话）  \n→ 矛盾，排除丙说真话。\n\n等等，上面推理有误。重新检查：\n\n假设丙说真话 → 乙说假话（丙说“乙说假话”为真）  \n乙说“甲说假话”是假话 → 甲说真话（因为乙说假话）  \n→ 甲说真话，丙说真话 → 两人说真话 → 矛盾。\n\n但题目要求“恰好只有一人说真话”，所以以上三种假设都矛盾？\n\n再仔细检查：\n\n甲说“乙和丙都说假话” → 如果甲",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.824388271998032,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "我们分析三人中恰好只有一人说真话。\n\n甲说：“乙和丙都说假话。”  \n乙说：“甲说假话。”  \n丙说：“乙说假话。”\n\n假设甲说真话 → 乙和丙都说假话。  \n那么乙说“甲说假话”是假话 → 甲说真话（符合）  \n丙说“乙说假话”是假话 → 乙说真话（矛盾，因为丙说假话意味着乙说真话）  \n→ 乙说真话，但甲说真话时乙必须说假话 → 矛盾。\n\n假设乙说真话 → 甲说假话。  \n甲说“乙和丙都说假话”是假话 → 乙或丙至少一人说真话 → 乙说真话（符合），丙说假话（符合）  \n丙说“乙说假话”是假话 → 乙说真话（符合）  \n→ 乙说真话，甲说假话，丙说假话 → 只有乙说真话 → 符合“恰好一人说真话”。\n\n假设丙说真话 → 乙说假话。  \n乙说“甲说假话”是假话 → 甲说真话  \n甲说“乙和丙都说假话”是真话 → 乙和丙都说假话 → 但丙说真话 → 矛盾。\n\n所以只有乙说真话时满足条件。\n\n答案：乙",
+        "finish_reason": "stop",
+        "output_tokens": 321,
+        "elapsed_s": 15.699307821996626,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶推理能力",
+    "kind": "closed",
+    "question": "桌上四张卡片可见面分别为A、D、4、7，每张卡片一面字母另一面数字。要验证“如果字母是元音，则背面数字为偶数”，最少必须翻哪两张卡？用卡片可见面标识回答。",
+    "accepted": [
+      "A和7",
+      "A、7",
+      "A,7",
+      "7和A",
+      "7、A",
+      "7,A"
+    ],
+    "id": "Q027",
+    "actual_prompt": "桌上四张卡片可见面分别为A、D、4、7，每张卡片一面字母另一面数字。要验证“如果字母是元音，则背面数字为偶数”，最少必须翻哪两张卡？用卡片可见面标识回答。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：要验证“如果字母是元音，则背面数字为偶数”，这是一个典型的“充分条件”命题，其逻辑等价于“如果背面数字不是偶数，则字母不是元音”（逆否命题）。因此，我们需要检查：\n\n1. 任何元音字母（A是元音）的背面是否为偶数 → 必须翻A，确认其背面是偶数。\n2. 任何背面是奇数（非偶数）的卡片 → 必须翻，因为如果背面是奇数，而字母是元音，则命题为假。所以必须翻奇数（7）来确认其正面是否为非元音。\n3. D是辅音，无需翻（因为命题只关心元音字母）。\n4. 4是偶数，无需翻（因为偶数不违反命题，无论字母是什么）。\n\n因此，必须翻A和7。\n\n答案：A、7",
+        "finish_reason": "stop",
+        "output_tokens": 198,
+        "elapsed_s": 10.686067495000316,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "思路：要验证“如果字母是元音，则背面数字为偶数”，这是一个典型的“充分条件”命题，其逻辑等价于“如果背面数字不是偶数，则字母不是元音”（逆否命题）。因此，我们需要检查：\n\n1. 任何元音字母（A是元音）的背面是否为偶数 → 必须翻A，确认其背面是偶数。\n2. 任何背面是奇数（非偶数）的卡片 → 必须翻，因为如果背面是奇数，而字母是元音，则命题为假。所以必须翻奇数（7）来确认其正面是否为非元音。\n3. D是辅音，无需翻（因为命题只关心元音字母）。\n4. 4是偶数，无需翻（因为偶数不违反命题，无论字母是什么）。\n\n因此，必须翻A和7。\n\n答案：A、7",
+        "finish_reason": "stop",
+        "output_tokens": 198,
+        "elapsed_s": 8.776795044992468,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶推理能力",
+    "kind": "closed",
+    "question": "四个任务A、B、C、D，每个恰好执行一次。A必须早于B和C，C必须早于B，B必须早于D。写出唯一合法的执行顺序，只用四个大写字母。",
+    "accepted": [
+      "ACBD"
+    ],
+    "id": "Q028",
+    "actual_prompt": "四个任务A、B、C、D，每个恰好执行一次。A必须早于B和C，C必须早于B，B必须早于D。写出唯一合法的执行顺序，只用四个大写字母。\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "INT8": {
+        "text": "思路：  \n根据约束条件：  \n- A 必须早于 B 和 C → A 在 B 和 C 之前  \n- C 必须早于 B → C 在 B 之前  \n- B 必须早于 D → B 在 D 之前  \n\n综合可得顺序链：A → C → B → D  \n这是唯一满足所有约束的顺序，因为 A 必须在最前（早于 B 和 C），C 必须在 B 前，B 必须在 D 前，且每个任务只执行一次。\n\n答案：ACBD",
+        "finish_reason": "stop",
+        "output_tokens": 126,
+        "elapsed_s": 5.57665150599496,
+        "auto_correct": true
+      },
+      "BF16": {
+        "text": "思路：  \n根据约束条件：  \n- A 必须早于 B 和 C → A 在 B 和 C 之前  \n- C 必须早于 B → C 在 B 之前  \n- B 必须早于 D → B 在 D 之前  \n\n综合可得顺序链：A → C → B → D  \n这是唯一满足所有约束的顺序，因为 A 必须在最前，C 必须在 B 前，B 必须在 D 前，且没有其他可选位置。\n\n答案：ACBD",
+        "finish_reason": "stop",
+        "output_tokens": 120,
+        "elapsed_s": 6.542814579006517,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "进阶推理能力",
+    "kind": "closed",
+    "question": "有三个箱子，标签分别写着“苹果”“橙子”“混合”，三个标签全部贴错。每次可以从某个箱子抽出一个水果观察。最少抽几个水果就能确定全部箱子的内容？",
+    "accepted": [
+      "1",
+      "一个"
+    ],
+    "id": "Q029",
+    "actual_prompt": "有三个箱子，标签分别写着“苹果”“橙子”“混合”，三个标签全部贴错。每次可以从某个箱子抽出一个水果观察。最少抽几个水果就能确定全部箱子的内容？\n请简要说明思路，最后单独一行严格写“答案：结果”，冒号后只填最终结果，不附加解释。",
+    "answers": {
+      "BF16": {
+        "text": "思路：由于三个标签全部贴错，混合箱不能是“混合”，只能是“苹果”或“橙子”。从“混合”标签的箱子抽一个水果：  \n- 若抽到苹果 → 该箱实际是苹果 → 那么“苹果”标签箱只能是橙子（因为标签错），剩下“橙子”标签箱只能是混合。  \n- 若抽到橙子 → 该箱实际是橙子 → 那么“橙子”标签箱只能是苹果，剩下“苹果”标签箱只能是混合。  \n因此，只需抽1个水果（从标签为“混合”的箱子）即可确定全部内容。\n\n答案：1",
+        "finish_reason": "stop",
+        "output_tokens": 146,
+        "elapsed_s": 6.59031769700232,
+        "auto_correct": true
+      },
+      "INT8": {
+        "text": "思路：由于三个标签全部贴错，混合箱不能是“混合”，只能是“苹果”或“橙子”。从“混合”标签的箱子抽一个水果：  \n- 若抽到苹果 → 该箱实际是苹果 → 那么“苹果”标签箱只能是橙子（因为标签错），剩下“橙子”标签箱只能是混合。  \n- 若抽到橙子 → 该箱实际是橙子 → 那么“橙子”标签箱只能是苹果，剩下“苹果”标签箱只能是混合。  \n因此，只需抽1个水果（从标签为“混合”的箱子）即可确定全部内容。\n\n答案：1",
+        "finish_reason": "stop",
+        "output_tokens": 146,
+        "elapsed_s": 6.505490089009982,
+        "auto_correct": true
+      }
+    },
+    "exact_text_match": true
+  },
+  {
+    "category": "进阶推理能力",
+    "kind": "open",
+    "question": "实验中GPU0运行BF16，GPU1运行INT8。测得INT8单次请求快8%，但输出Token数也少5%。请分析为什么不能直接认定INT8带来了8%的端到端加速，并设计一个更公平的对照实验。",
+    "criteria": "识别Token数混杂因素；讨论GPU差异；固定工作量；多轮测量与交叉实验。",
+    "id": "Q030",
+    "actual_prompt": "实验中GPU0运行BF16，GPU1运行INT8。测得INT8单次请求快8%，但输出Token数也少5%。请分析为什么不能直接认定INT8带来了8%的端到端加速，并设计一个更公平的对照实验。",
+    "answers": {
+      "INT8": {
+        "text": "这是一个非常典型且重要的实验设计问题。表面上看，INT8模型在单次请求中“快8%”，但“输出Token数少5%”，这说明**端到端加速不能简单由单次请求耗时的比较得出**，因为两个模型在“完成相同任务”（即生成相同长度的输出）上的表现不同，且资源分配、推理路径、批处理策略等可能不一致。\n\n---\n\n## 一、为什么不能直接认定INT8带来了8%的端到端加速？\n\n### 1. **任务完成度不一致**\n- INT8模型在相同时间内生成的Token更少（少5%），意味着它“提前结束”或“提前达到终止条件”。\n- 如果任务是“生成固定长度的文本”（如生成100个Token），INT8模型可能只生成95个Token就停止了，而BF16模型生成了100个Token。\n- 因此，INT8模型虽然“更快”，但**没有完成完整任务**，不能直接比较“单位任务耗时”。\n\n### 2. **吞吐量 vs 延迟的混淆**\n- 单次请求耗时（延迟）快8%，是“单次请求的平均响应时间”。\n- 但端到端加速应考虑“单位Token生成时间”或“单位任务完成时间”。\n- 如果INT8模型生成更少Token，它可能在“单位Token生成时间”上更慢（因为Token数少，但时间也少），需要进一步分析。\n\n### 3. **可能的其他因素干扰**\n- GPU负载不均衡：GPU0和GPU1可能负载不同，或存在通信开销、数据预处理差异。\n- 模型结构差异：INT8和BF16模型可能不是完全相同的模型",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.87205767299747,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "这是一个非常典型且重要的实验设计问题。表面上看，INT8模型在单次请求中“快8%”，但“输出Token数少5%”，这说明**端到端加速不能简单由单次请求耗时的比较得出**，因为两个模型在“完成相同任务”（即生成相同长度的输出）上的表现不同，且资源分配、推理路径、批处理策略等可能不一致。\n\n---\n\n## 一、为什么不能直接认定INT8带来了8%的端到端加速？\n\n### 1. **任务完成度不一致**\n- INT8模型在相同时间内生成的Token更少（少5%），意味着它“提前结束”或“提前达到终止条件”。\n- 如果任务是“生成固定长度的文本”（如生成100个Token），INT8模型可能只生成95个Token就停止了，而BF16模型生成了100个Token。\n- 因此，INT8模型虽然“更快”，但**没有完成完整任务**，不能直接比较“单位任务耗时”。\n\n### 2. **吞吐量 vs 延迟的混淆**\n- 单次请求耗时（延迟）快8%，是“单次请求的平均响应时间”。\n- 但端到端加速应衡量“单位任务的总耗时”或“单位Token的平均耗时”。\n- 如果INT8模型生成更少Token，它可能在“单位Token耗时”上反而更慢（因为Token数少，但总耗时可能没减少8%）。\n\n### 3. **可能的其他因素干扰**\n- GPU负载不均衡：GPU0和GPU1可能负载不同，或存在通信开销、数据预处理差异。\n- 模型结构差异：INT8和BF1",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.357173149008304,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "专业术语与准确性",
+    "kind": "open",
+    "question": "解释CUDA中的Warp、Block、SM Occupancy。说明为何Occupancy高不必然意味着Kernel速度快。",
+    "criteria": "Warp 32线程；Block组织线程；Occupancy定义正确；解释访存、指令和带宽等性能限制。",
+    "id": "Q031",
+    "actual_prompt": "解释CUDA中的Warp、Block、SM Occupancy。说明为何Occupancy高不必然意味着Kernel速度快。",
+    "answers": {
+      "BF16": {
+        "text": "在CUDA编程中，**Warp、Block、SM Occupancy** 是理解GPU并行计算架构和性能优化的关键概念。下面逐一解释，并说明为何 **高Occupancy不必然意味着Kernel速度快**。\n\n---\n\n## 一、基本概念解释\n\n### 1. Warp（线程束）\n- **定义**：CUDA中最小的调度单位，由32个线程组成（称为“Warp”）。\n- **特性**：\n  - Warp内所有线程**必须同步执行**（即同一指令流，同一时钟周期执行）。\n  - 如果Warp内线程执行路径不同（如分支），会引发**Warp Divergence**，导致部分线程空转，降低效率。\n  - Warp是GPU硬件调度的基本单位，SM（Streaming Multiprocessor）一次只能发射一个Warp的指令。\n\n### 2. Block（线程块）\n- **定义**：一组线程的集合，由多个Warp组成（通常为1~32个Warp，即32~1024个线程）。\n- **特性**：\n  - Block内线程可以共享内存（shared memory）和同步（如`__syncthreads()`）。\n  - Block是CUDA kernel的调度单位，由SM调度执行。\n  - Block之间不共享内存，需通过全局内存通信。\n\n### 3. SM（Streaming Multiprocessor）Occupancy\n- **定义**：指一个SM在某一时刻能同时运行多少个Block（或Warp）的“负载程度”。\n- **计算公式**：\n  ```\n  Occupancy = (实际运行的Block数 × Block内线程数) / (SM最大线程数)\n  ```\n  或更精确地，考虑Warp数量：\n  ```\n  Occupancy",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.89811606600415,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "在CUDA编程中，**Warp、Block、SM Occupancy** 是理解GPU并行计算架构和性能优化的关键概念。下面逐一解释，并说明为何 **高Occupancy不必然意味着Kernel速度快**。\n\n---\n\n## 一、基本概念解释\n\n### 1. Warp（线程束）\n- **定义**：CUDA中最小的调度单位，由32个线程组成（称为“Warp”）。\n- **行为**：Warp中的所有线程**必须同步执行**，即在同一个指令周期内执行相同的指令（SIMT架构）。\n- **重要性**：Warp调度器会将Warp分配到SM上执行。如果Warp中的线程存在分支（如if/else），可能导致**Warp Divergence**（分支发散），降低效率。\n\n### 2. Block（线程块）\n- **定义**：一组线程的集合，通常由多个Warp组成（如128、256、512线程）。\n- **作用**：Block是CUDA内核中线程组织的基本单位，可以被调度到SM上执行。\n- **限制**：Block大小受硬件限制（如最大线程数、共享内存大小等），通常为128~1024线程。\n\n### 3. SM（Streaming Multiprocessor，流式多处理器）\n- **定义**：GPU中的计算核心单元，每个SM包含多个CUDA核心、共享内存、寄存器文件、L1缓存等。\n- **功能**：SM负责调度Block、执行线程、管理资源。\n- **关键指标**：每个SM有固定数量的**寄存器组**、**共享内存**、**CUDA核心数**。\n\n### 4. SM Occupancy（SM利用率）\n-",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.791583723999793,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "专业术语与准确性",
+    "kind": "open",
+    "question": "解释LLM Serving中的Prefill、Decode、TTFT和TPOT。为什么TTFT降低不代表TPOT一定降低？",
+    "criteria": "四个概念准确；区分首Token处理和后续Token生成。",
+    "id": "Q032",
+    "actual_prompt": "解释LLM Serving中的Prefill、Decode、TTFT和TPOT。为什么TTFT降低不代表TPOT一定降低？",
+    "answers": {
+      "INT8": {
+        "text": "在LLM（大语言模型）Serving（服务部署）中，**Prefill、Decode、TTFT、TPOT** 是衡量推理性能和用户体验的关键指标。下面逐一解释它们的含义，再分析为什么 **TTFT降低不代表TPOT一定降低**。\n\n---\n\n## 1. Prefill（预填充）\n\n- **定义**：指模型在接收到完整输入（prompt）后，开始生成第一个token之前所进行的计算过程。这个阶段包括：\n  - 输入token的嵌入（embedding）\n  - 位置编码（positional encoding）\n  - 通过模型前几层（如Transformer的encoder层）计算上下文表示\n- **目的**：为后续生成建立“状态”或“上下文表示”，是生成第一个token的基础。\n- **重要性**：在长输入或复杂prompt下，Prefill耗时显著，是推理延迟的主要来源之一。\n\n---\n\n## 2. Decode（解码 / 生成阶段）\n\n- **定义**：模型在生成第一个token后，逐token地进行推理，每生成一个token，就进行一次前向计算，直到生成完整输出。\n- **特点**：\n  - 每个token的生成依赖于前一个token（自回归）。\n  - 通常使用KV Cache（Key-Value Cache）来缓存中间状态，避免重复计算。\n- **性能瓶颈**：虽然单步计算快，但若生成长序列，仍可能因计算或内存瓶颈导致延迟。\n\n---\n\n## 3. TTFT（Time To First Token）\n\n- **定义**：从用户发送请求（prompt）到模型返回**第一个token**的时间。\n- **组成**：TTFT = Prefill时间（主要部分） + 生成第一个token的Decode时间（通常很小）。\n- **意义**：用户体验",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.959954242003732,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "在LLM（大语言模型）Serving（服务部署）中，**Prefill、Decode、TTFT、TPOT** 是衡量推理性能和用户体验的关键指标。下面逐一解释它们的含义，再分析为什么 **TTFT降低不代表TPOT一定降低**。\n\n---\n\n## 1. Prefill（预填充）\n\n- **定义**：指模型在接收到完整输入（prompt）后，开始生成第一个 token 之前所进行的计算过程。\n- **包含内容**：包括输入 token 的嵌入、位置编码、KV Cache 初始化、前向传播到第一层等。\n- **目的**：为后续的 token 生成建立上下文状态。\n- **重要性**：对于长 prompt 或大模型，Prefill 是计算密集型阶段，耗时较长。\n\n---\n\n## 2. Decode（解码 / 生成阶段）\n\n- **定义**：模型在生成第一个 token 后，逐 token 生成后续 token 的过程。\n- **特点**：每个 token 生成是串行的（在单个 token 生成完成前，下一个 token 无法开始），但现代系统通过并行化（如并行解码、流水线、KV Cache 优化）提升效率。\n- **关键指标**：Token 生成延迟、吞吐量（tokens/sec）。\n\n---\n\n## 3. TTFT（Time To First Token）\n\n- **定义**：从用户发送请求（prompt）到模型返回第一个 token 所需的时间。\n- **组成**：TTFT = Prefill 时间（因为第一个 token 必须在 Prefill 完成后才能生成）。\n- **意义**：直接影响用户体验，用户等待“第一个字”出现的时间越短，体验越好。\n- **优化目标**：降低 TTFT 是服务端优化的首要目标。\n\n---\n\n## 4.",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.31060830199567,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "专业术语与准确性",
+    "kind": "open",
+    "question": "一个LM Head的权重形状为[151936,4096]。解释逐输出行对称INT8量化时scale的含义、近似反量化公式，以及量化误差主要来自什么。",
+    "criteria": "权重维度准确；每行scale；W≈q×scale；舍入与截断误差；不能保证Token完全一致。",
+    "id": "Q033",
+    "actual_prompt": "一个LM Head的权重形状为[151936,4096]。解释逐输出行对称INT8量化时scale的含义、近似反量化公式，以及量化误差主要来自什么。",
+    "answers": {
+      "BF16": {
+        "text": "在逐输出行对称INT8量化（per-output-row symmetric INT8 quantization）中，LM Head 的权重形状为 [151936, 4096]，表示有 151936 个输出特征（即词表大小或输出维度），每个输出特征对应一个长度为 4096 的权重向量（即输入维度）。\n\n---\n\n## 一、Scale 的含义\n\n在对称 INT8 量化中，**scale** 是用于将原始浮点权重映射到 INT8 范围 [-127, 127]（或 [-128, 127]，取决于实现）的缩放因子。\n\n对于每个输出行（即每个输出维度，共 151936 行），我们独立计算一个 scale：\n\n- 对第 i 行（i ∈ [0, 151936)）的权重向量 w_i ∈ ℝ⁴⁰⁹⁶，计算其最大绝对值：\n  \\[\n  \\text{max\\_abs}_i = \\max_{j} |w_{i,j}|\n  \\]\n- 然后，scale_i 通常定义为：\n  \\[\n  \\text{scale}_i = \\frac{\\text{max\\_abs}_i}{127}\n  \\]\n  （或 128，取决于是否包含 0，但通常对称量化使用 127）\n\n> ✅ **Scale 的含义**：它表示该行原始浮点权重的最大绝对值与 INT8 最大绝对值（127）的比值。它决定了量化后 INT8 值的“粒度”或“精度”。\n\n---\n\n## 二、近似反量化公式",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.76943487499375,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "在逐输出行对称INT8量化（per-output-row symmetric INT8 quantization）中，LM Head 的权重形状为 [151936, 4096]，表示有 151936 个输出特征（即词表大小或输出维度），每个输出特征对应一个长度为 4096 的权重向量（即输入维度）。\n\n---\n\n## 一、Scale 的含义\n\n在对称 INT8 量化中，**scale** 是用于将原始浮点权重映射到 INT8 范围 [-127, 127]（或 [-128, 127]，取决于实现）的缩放因子。\n\n对于每个输出行（即每个输出维度，共 151936 行），我们独立计算一个 scale：\n\n- 对第 i 行（i ∈ [0, 151936)）的权重向量 w_i ∈ ℝ⁴⁰⁹⁶，计算其最大绝对值：\n  \\[\n  \\text{max\\_abs}_i = \\max_{j} |w_{i,j}|\n  \\]\n- 然后，该行的 scale 为：\n  \\[\n  \\text{scale}_i = \\frac{\\text{max\\_abs}_i}{127}\n  \\]\n  （或 128，取决于是否包含 0，但通常对称量化使用 127）\n\n> **注意**：scale_i 是一个标量，用于将该行的浮点权重缩放为 INT8 范围。例如，原始权重 w_ij 被量化为：\n> \\[\n> q_{ij} = \\text{round}\\left( \\frac{w_{ij",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.137639805005165,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "专业术语与准确性",
+    "kind": "open",
+    "question": "区分UVA、Pinned Memory与Mapped Pinned Memory。解释为什么在WSL2下设置VLLM_WSL2_ENABLE_PIN_MEMORY=1不等于打开GPU硬件UVA能力。",
+    "criteria": "区分地址能力、页锁定和映射；识别WSL2限制；不混淆环境开关与硬件开关。",
+    "id": "Q034",
+    "actual_prompt": "区分UVA、Pinned Memory与Mapped Pinned Memory。解释为什么在WSL2下设置VLLM_WSL2_ENABLE_PIN_MEMORY=1不等于打开GPU硬件UVA能力。",
+    "answers": {
+      "INT8": {
+        "text": "这是一个非常深入且重要的问题，涉及 CUDA 内存管理、WSL2 架构、以及 VLLM 的内存优化机制。我们来逐层拆解：\n\n---\n\n## 一、UVA（Unified Virtual Addressing）是什么？\n\n**UVA 是 NVIDIA GPU 的硬件特性**，允许 CPU 和 GPU 共享同一虚拟地址空间。这意味着：\n\n- CPU 可以直接通过虚拟地址访问 GPU 显存（无需显式拷贝）。\n- 无需 CPU-GPU 显存拷贝（如 `cudaMemcpy`），提升性能。\n- 依赖于 NVIDIA 驱动和硬件支持（如 Ampere 及以上架构）。\n- **仅在 Linux + NVIDIA 驱动 + CUDA 环境下有效**，且需要显式启用（如 `cudaSetDeviceFlags(cudaDeviceEnableUVA)`）。\n\n> ⚠️ 注意：UVA 是**硬件级**的虚拟地址空间统一，不是软件层面的内存映射。\n\n---\n\n## 二、Pinned Memory（锁页内存）是什么？\n\n**Pinned Memory 是 CPU 端的内存区域**，由操作系统和 CUDA 驱动管理，具有以下特性：\n\n- 不能被操作系统换页（page-out），始终驻留在物理内存中。\n- CPU 可以直接访问，无需页表转换，适合高速数据传输。\n- 通过 `cudaHostRegister()` 或 `torch.cuda.empty_cache()` + `pin_memory=True` 创建。\n- **用于加速 `cudaMemcpy`**，减少拷贝开销。\n\n> ✅ 优点：CPU-GPU 数据传输更快。\n> ❌ 缺点：内存不能被交换，占用物理内存，且不能直接被 GPU 访问（除非配合 UVA）。\n\n---\n\n## 三、Mapped Pinned Memory（映",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.760745150997536,
+        "auto_correct": null
+      },
+      "BF16": {
+        "text": "这是一个非常深入且重要的问题，涉及 CUDA 内存管理、WSL2 架构、以及 VLLM 的内存优化机制。我们来逐层拆解：\n\n---\n\n## 一、UVA（Unified Virtual Addressing）是什么？\n\n**UVA 是 NVIDIA GPU 的硬件特性**，允许 CPU 和 GPU 共享同一虚拟地址空间。这意味着：\n\n- CPU 可以直接通过虚拟地址访问 GPU 显存（无需显式拷贝）。\n- 无需 CPU-GPU 显存拷贝（如 `cudaMemcpy`），提升性能。\n- 依赖于 NVIDIA 驱动和硬件支持（如 Ampere 及以上架构）。\n- **仅在 Linux + NVIDIA 驱动 + CUDA 环境下有效**，且需要显式启用（如 `cudaSetDeviceFlags(cudaDeviceEnableUVA)`）。\n\n> ⚠️ 注意：UVA 是**硬件级**的虚拟地址空间统一，不是软件层面的内存映射。\n\n---\n\n## 二、Pinned Memory（锁页内存）是什么？\n\n**Pinned Memory 是 CPU 端的内存区域**，由操作系统和 CUDA 驱动管理，具有以下特性：\n\n- 不能被操作系统换页（page-out），始终驻留在物理内存中。\n- CPU 可以直接访问，无需页表转换，适合高速数据传输。\n- 通过 `cudaHostRegister()` 或 `torch.cuda.empty_cache()` + `pin_memory=True` 创建。\n- 用于 `cudaMemcpyAsync` 时提升性能，避免页表抖动。\n\n> ✅ 优点：CPU-GPU 数据传输加速。\n> ❌ 缺点：不能直接被 GPU 显存访问（除非配合 UVA）。\n\n---\n\n## 三、Mapped Pinned Memory（映射锁页内存）是什么",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.52228136800113,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  },
+  {
+    "category": "专业术语与准确性",
+    "kind": "open",
+    "question": "解释Tensor Parallel和Pipeline Parallel的区别。再解释为什么针对单个4096维输入向量编写的INT8 GEMV不能直接替代所有Prefill阶段的矩阵乘法。",
+    "criteria": "并行切分方式正确；区分GEMV和GEMM；考虑多Token输入、并行通信与形状要求。",
+    "id": "Q035",
+    "actual_prompt": "解释Tensor Parallel和Pipeline Parallel的区别。再解释为什么针对单个4096维输入向量编写的INT8 GEMV不能直接替代所有Prefill阶段的矩阵乘法。",
+    "answers": {
+      "BF16": {
+        "text": "这是一个非常深入的分布式训练/推理系统问题，涉及模型并行策略和算子优化的边界。我将分两部分详细解释：\n\n---\n\n## 一、Tensor Parallel 与 Pipeline Parallel 的区别\n\n### 1. Tensor Parallel（张量并行）\n- **核心思想**：将一个张量（通常是权重矩阵或激活张量）**水平切分**，分配到多个GPU上，每个GPU只计算一部分。\n- **切分维度**：通常是按行（行切分）或列（列切分）切分矩阵。\n  - 例如：一个 1000×4096 的权重矩阵，按行切分到 4 个 GPU，每个 GPU 负责 250 行。\n- **通信开销**：在前向/后向传播中，需要在 GPU 之间交换切分部分的张量（如激活值或梯度）。\n- **适用场景**：适合大矩阵（如大模型的权重矩阵），尤其是当矩阵维度大但GPU显存有限时。\n- **优点**：\n  - 显存占用减少（每个GPU只存一部分张量）\n  - 可扩展性强（可增加GPU数量）\n- **缺点**：\n  - 通信开销大（尤其是当切分维度导致大量数据交换）\n  - 需要精心设计切分策略（如按列切分适合GEMM，按行切分适合激活）\n\n### 2. Pipeline Parallel（流水线并行）\n- **核心思想**：将模型**按层切分**，每层分配到一个或多个GPU上，形成“流水线”。\n- **工作方式**：每个GPU负责模型的一部分层，数据像流水一样从一个GPU传到下一个GPU。\n-",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 17.11643799499143,
+        "auto_correct": null
+      },
+      "INT8": {
+        "text": "这是一个非常深入的分布式训练/推理系统问题，涉及模型并行策略和算子优化的边界。我将分两部分详细解释：\n\n---\n\n## 一、Tensor Parallel 与 Pipeline Parallel 的区别\n\n### 1. Tensor Parallel（张量并行）\n\n**核心思想**：将一个张量（通常是权重矩阵或激活张量）**水平切分**，分配到多个GPU上，每个GPU只计算一部分张量。\n\n- **切分维度**：通常是按矩阵的行（或列）切分，例如将一个 1024×4096 的权重矩阵切分为 4 个 256×4096 的子矩阵，分别放在 4 个 GPU 上。\n- **通信开销**：在前向/后向传播中，需要在GPU之间交换切分部分的张量（如通过 All-Reduce 或 All-Gather）。\n- **适用场景**：适合大矩阵（如大模型的权重矩阵），尤其是当单个GPU显存不足时。\n- **优点**：可以显著减少单卡显存占用，提升单个算子的并行效率。\n- **缺点**：通信开销大，尤其在梯度更新时需要同步，可能成为瓶颈。\n\n**示例**：\n```\n原矩阵 W (1024, 4096) → 切分后：\nGPU0: W[0:256, :]  \nGPU1: W[256:512, :]  \nGPU2: W[512:768, :]  \nGPU3: W[768:1024, :]\n```\n\n---\n\n### 2. Pipeline Parallel（流水线并行）\n\n**核心思想**：将模型的**层（Layer",
+        "finish_reason": "length",
+        "output_tokens": 384,
+        "elapsed_s": 16.766880573006347,
+        "auto_correct": null
+      }
+    },
+    "exact_text_match": false
+  }
+]

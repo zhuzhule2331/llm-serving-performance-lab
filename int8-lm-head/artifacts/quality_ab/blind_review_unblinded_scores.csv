@@ -1,0 +1,22 @@
+﻿dataset,id,category,X_identity,Y_identity,BF16_score,INT8_score,INT8_minus_BF16,BF16_finish,INT8_finish,BF16_output_tokens,INT8_output_tokens,blind_notes
+original_excerpt,Q001,基本语言能力,BF16/INT8,BF16/INT8,4,4,0,stop,stop,17,17,均准确保留 do not necessarily 与算子/端到端含义。
+original_excerpt,Q002,基本语言能力,INT8/BF16,INT8/BF16,4,4,0,stop,stop,14,14,均在字数限制内，完整保留吞吐提升和尾延迟上升。
+original_excerpt,Q003,基本语言能力,BF16/INT8,BF16/INT8,4,4,0,stop,stop,9,9,均自然精炼，无信息损失。
+original_excerpt,Q004,基本语言能力,INT8/BF16,INT8/BF16,3,3,0,stop,stop,47,47,恰好两句且区分时延/吞吐；将 latency 限定为单个网络包传输时间，较题目的一般性概念狭窄。
+original_excerpt,Q005,基本语言能力,BF16,INT8,4,4,0,stop,stop,30,29,两份 JSON 均可解析，字段及数组元素数量正确，风险描述合理。
+original_excerpt,Q019,进阶解题能力,BF16,INT8,4,4,0,length,length,384,384,可见的完整函数使用小写集合去重、保留首次顺序；复杂度说明正确；文件尾部附加示例有截断，不能据此判断真实生成停止。
+original_excerpt,Q020,进阶解题能力,INT8,BF16,3,4,1,length,length,384,384,均给出正确 ROW_NUMBER 排序和 rn<=3；Y 附带“也可以加 GROUP BY user_id”是不当建议，会改变查询语义。
+original_excerpt,Q030,进阶推理能力,BF16,INT8,2,2,0,length,length,384,384,可见文本识别输出长度与硬件混杂因素，但在原始盲评截取范围内没有给出完整的交叉对照方案。
+original_excerpt,Q031,专业术语与准确性,INT8,BF16,2,2,0,length,length,384,384,原始盲评字段截断在 Occupancy 定义附近；X尚未说明核心定义，Y只给出粗略公式，尚未展开为何高占用率不等于高性能。
+original_excerpt,Q032,专业术语与准确性,BF16,INT8,2,2,0,length,length,384,384,原始盲评字段在 TTFT/TPOT 附近截断，未显示完整 TPOT 及关键因果比较。
+original_excerpt,Q033,专业术语与准确性,BF16,INT8,2,2,0,length,length,384,384,可见部分正确描述权重形状及逐行 scale，但反量化和误差讨论在截取范围外。
+original_excerpt,Q034,专业术语与准确性,INT8,BF16,1,1,0,length,length,384,384,在可见部分，两者都将 UVA 与无拷贝直接访问混同，并给出错误/不适用的 pin_memory 创建方式；还未完成 mapped 区分。
+original_excerpt,Q035,专业术语与准确性,BF16,INT8,2,2,0,length,length,384,384,可见部分描述 TP 与 PP 的基本划分，但单向量 GEMV 与 Prefill GEMM 的核心论证没有出现在摘录内。
+long_retest,Q019,进阶解题能力,BF16,INT8,4,4,0,stop,stop,437,540,双方给出正确且可运行的集合去重函数，保留首次顺序，并在固定字符串长度假设下正确给出平均 O(n)。
+long_retest,Q020,进阶解题能力,INT8,BF16,4,4,0,stop,stop,385,385,双方使用 ROW_NUMBER/PARTITION BY/user_id 与 event_time、event_id 双重降序，过滤 rn<=3；覆盖全部边界要求。
+long_retest,Q030,进阶推理能力,BF16,INT8,2,2,0,length,length,1200,1200,双方识别 Token 数和公平工作量。X缺少同一GPU/交换GPU的对照设计；Y 虽提到不同 GPU，却仍固定 BF16 在GPU0/INT8在GPU1，且数值示例把(95/100)*(100/92)错误算成96.7%（实际约103.3%）。均因长度上限结束。
+long_retest,Q031,专业术语与准确性,INT8,BF16,2,2,0,length,length,1200,1200,两者包含 warp 32线程、block 与带宽/ILP等关键因素；但 Occupancy 公式和硬件上限举例有错误/不准确之处（例如把部分SM支持的最大warp数写成128），且有全局访问与bank conflict等概念混淆；均长度截断。
+long_retest,Q032,专业术语与准确性,BF16,INT8,4,3,-1,stop,length,1195,1200,双方给出四个概念及TTFT/TPOT分别受 Prefill/Decode 影响的核心解释。Y部分表述不严谨（如生成Token可触发新网络请求），并因输出长度上限截断；X正常停止。
+long_retest,Q033,专业术语与准确性,BF16,INT8,3,2,-1,length,length,1200,1200,双方给出逐行scale及W≈q×scale，解释了舍入和范围误差；X少量不准确表述（如“反量化需除以scale”），Y额外错误地称4096为LM Head输出维度、把per-row scale描述为不匹配风险；两者未明确讨论token不必一致且均截断。
+long_retest,Q034,专业术语与准确性,INT8,BF16,1,1,0,length,length,1200,1200,双方均正确指出vLLM环境变量不能开启UVA，但误称UVA自动消除主机/GPU拷贝，混淆映射锁页内存与显存映射，列举无关/不存在的PyTorch CUDA API，且将WSL2的支持情况作过度绝对化断言；均长度截断。
+long_retest,Q035,专业术语与准确性,BF16,INT8,2,2,0,length,length,1200,1200,双方理解TP/PP和单向量GEMV与多token GEMM不同；但关键Prefill说明均被长度截断。Y还出现Q=W_Q@K及不一致的矩阵维度表述，无法评为完整正确。

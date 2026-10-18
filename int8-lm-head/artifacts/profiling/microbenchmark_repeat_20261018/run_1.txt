@@ -1,0 +1,28 @@
+Started: 2026-10-18T20:28:52.887385+08:00
+GPU0 pre-run temp: 33 C
+GPU0 pre-run free memory: 24308 MiB
+GPU0 pre-run utilization: 0%
+
+========== REAL QWEN LM HEAD ==========
+Weight shape: [151936, 4096]
+Weight dtype: BF16
+Free GPU memory: 22.76 GiB
+Quantizing real LM Head...
+  Quantized 1024/151936 rows
+  Quantized 33792/151936 rows
+  Quantized 66560/151936 rows
+  Quantized 99328/151936 rows
+  Quantized 132096/151936 rows
+Quantization COMPLETE
+
+========== OUTPUT ACCURACY ==========
+Trial 1: NRMSE=0.913022% MaxError=0.003076 Top1Equal=True
+INT8 GPU vs CPU reference: PASS (33 rows)
+Trial 2: NRMSE=0.934280% MaxError=0.002947 Top1Equal=True
+Trial 3: NRMSE=0.878923% MaxError=0.003885 Top1Equal=True
+
+========== GPU KERNEL BENCHMARK ==========
+BF16 torch.mm median: 1.5713 ms
+INT8 V2 median:       1.2058 ms
+Latency ratio:        1.303x
+REAL-WEIGHT MICROBENCHMARK COMPLETE

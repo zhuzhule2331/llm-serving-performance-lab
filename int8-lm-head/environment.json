@@ -1,0 +1,12 @@
+{
+  "hardware": "Remote server, RTX 3090 GPU0",
+  "server_gpu_count": 2,
+  "benchmark_gpu_count": 1,
+  "python": "3.12.14",
+  "torch": "2.13.0+cu129",
+  "vllm": "0.28.0+cu129",
+  "triton": "3.7.1",
+  "cuda_runtime": "12.9.79",
+  "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Tue_Oct_29_23:50:19_PDT_2024\nCuda compilation tools, release 12.6, V12.6.85\nBuild cuda_12.6.r12.6/compiler.35059454_0",
+  "gpu0": "NVIDIA GeForce RTX 3090, 572.83"
+}

@@ -1,0 +1,45 @@
+========== EXPERIMENT ==========
+2026-10-18T20:26:16+08:00
+Physical GPU: RTX 3090 GPU0
+CUDA_VISIBLE_DEVICES=0
+Benchmark: test_real_lm_head.py
+
+========== SOFTWARE ==========
+PyTorch: 2.13.0+cu129
+Torch CUDA: 12.9
+Copyright (c) 2005-2024 NVIDIA Corporation
+Built on Tue_Oct_29_23:50:19_PDT_2024
+Cuda compilation tools, release 12.6, V12.6.85
+Build cuda_12.6.r12.6/compiler.35059454_0
+
+========== GPU BEFORE ==========
+name, temperature.gpu, memory.free [MiB], utilization.gpu [%]
+NVIDIA GeForce RTX 3090, 33, 24308 MiB, 0 %
+
+========== BENCHMARK ==========
+========== REAL QWEN LM HEAD ==========
+Weight shape: [151936, 4096]
+Weight dtype: BF16
+Free GPU memory: 22.76 GiB
+Quantizing real LM Head...
+  Quantized 1024/151936 rows
+  Quantized 33792/151936 rows
+  Quantized 66560/151936 rows
+  Quantized 99328/151936 rows
+  Quantized 132096/151936 rows
+Quantization COMPLETE
+
+========== OUTPUT ACCURACY ==========
+Trial 1: NRMSE=0.913022% MaxError=0.003076 Top1Equal=True
+INT8 GPU vs CPU reference: PASS (33 rows)
+Trial 2: NRMSE=0.934280% MaxError=0.002947 Top1Equal=True
+Trial 3: NRMSE=0.878923% MaxError=0.003885 Top1Equal=True
+
+========== GPU KERNEL BENCHMARK ==========
+BF16 torch.mm median: 1.6502 ms
+INT8 V2 median:       1.3430 ms
+Latency ratio:        1.229x
+REAL-WEIGHT MICROBENCHMARK COMPLETE
+
+========== BENCHMARK END ==========
+2026-10-18T20:26:26+08:00

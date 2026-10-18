@@ -1,0 +1,29 @@
+{
+  "stages": {
+    "B1_INT8": {
+      "median_ms": 23.751350000000002,
+      "mean_ms": 23.907183333333332,
+      "count": 12
+    },
+    "A1_BF16": {
+      "median_ms": 25.5806,
+      "mean_ms": 25.5194,
+      "count": 12
+    },
+    "A2_BF16": {
+      "median_ms": 25.81645,
+      "mean_ms": 25.715958333333333,
+      "count": 12
+    },
+    "B2_INT8": {
+      "median_ms": 24.85535,
+      "mean_ms": 24.876725,
+      "count": 12
+    }
+  },
+  "bf16_mean_ms": 25.617679166666665,
+  "int8_mean_ms": 24.391954166666668,
+  "int8_minus_bf16_ms": -1.225724999999997,
+  "speed_ratio": 1.0502512013438856,
+  "results_csv": "artifacts/profiling/graph_baab_20261018_184013/results.csv"
+}

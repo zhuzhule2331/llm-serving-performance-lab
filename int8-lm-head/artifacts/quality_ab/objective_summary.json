@@ -1,0 +1,57 @@
+{
+  "基本计算能力": {
+    "total": 5,
+    "BF16": {
+      "correct": 5,
+      "unparsed": 0
+    },
+    "INT8": {
+      "correct": 5,
+      "unparsed": 0
+    }
+  },
+  "基本推理思考能力": {
+    "total": 5,
+    "BF16": {
+      "correct": 2,
+      "unparsed": 0
+    },
+    "INT8": {
+      "correct": 2,
+      "unparsed": 0
+    }
+  },
+  "进阶解题能力": {
+    "total": 3,
+    "BF16": {
+      "correct": 3,
+      "unparsed": 0
+    },
+    "INT8": {
+      "correct": 3,
+      "unparsed": 0
+    }
+  },
+  "进阶计算能力": {
+    "total": 5,
+    "BF16": {
+      "correct": 4,
+      "unparsed": 0
+    },
+    "INT8": {
+      "correct": 4,
+      "unparsed": 0
+    }
+  },
+  "进阶推理能力": {
+    "total": 4,
+    "BF16": {
+      "correct": 4,
+      "unparsed": 0
+    },
+    "INT8": {
+      "correct": 3,
+      "unparsed": 1
+    }
+  }
+}

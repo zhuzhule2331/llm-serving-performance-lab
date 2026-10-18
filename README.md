@@ -120,6 +120,20 @@ Evidence boundary: results in `results/` are **aggregates derived from the froze
 artifacts**; they are not the raw per-request logs. The raw logs stay private (size + they
 contain host paths).
 
+## Additional study: INT8 LM Head + custom CUDA GEMV
+
+A second, separate study lives in [`int8-lm-head/`](int8-lm-head/README.md). It replaces the
+LM Head projection of the same model with a weight-only INT8 representation plus a hand-written
+CUDA GEMV, integrates it into vLLM through a `general_plugins` entry point, and measures the
+kernel level and the serving level **separately**.
+
+**Boundary, stated up front:** that study is single-GPU (GPU0 only), batch-1 decode, one model,
+one shape. Its kernel-level microbenchmark varied across four runs (**1.229×–1.978×**, median
+of three repeats **1.303×**); its client-side approximate-TPOT observation is **≈4.14%** with
+no significance claim. It is **not** a whole-model speedup, **not** a memory-saving result, and
+**not** a lossless-quantization claim. Full methodology, quality evaluation and limitations
+are inside that directory.
+
 ## License
 
 See [`LICENSE_NOTE.md`](LICENSE_NOTE.md).

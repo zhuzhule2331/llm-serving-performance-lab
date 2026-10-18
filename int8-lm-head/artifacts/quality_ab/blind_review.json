@@ -1,0 +1,145 @@
+[
+  {
+    "id": "Q001",
+    "category": "基本语言能力",
+    "question": "把这句话准确翻译成英文：算子变快不一定意味着端到端请求延迟下降。",
+    "criteria": "保留“不一定”的逻辑含义；准确翻译算子及端到端延迟。",
+    "X": "Faster operators do not necessarily mean a decrease in end-to-end request latency.",
+    "Y": "Faster operators do not necessarily mean a decrease in end-to-end request latency.",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q002",
+    "category": "基本语言能力",
+    "question": "某系统低并发时延迟很低，高并发时吞吐提升，但排队使尾延迟增加。请用不超过25个汉字概括主要现象。",
+    "criteria": "语言简洁；准确保留吞吐提升与尾延迟增加。",
+    "X": "低并发快，高并发吞吐增但尾延迟升",
+    "Y": "低并发快，高并发吞吐增但尾延迟升",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q003",
+    "category": "基本语言能力",
+    "question": "把“我们需要在接下来的后续阶段进一步继续检查这个问题”改写成简洁、自然的书面中文。",
+    "criteria": "减少冗余；不改变原句意图；表达自然。",
+    "X": "我们将在下一阶段继续跟进这个问题。",
+    "Y": "我们将在下一阶段继续跟进这个问题。",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q004",
+    "category": "基本语言能力",
+    "question": "Use exactly two English sentences to explain the difference between latency and throughput.",
+    "criteria": "恰好两句英文；清楚区分单请求耗时与单位时间处理量。",
+    "X": "Latency is the time it takes for a single data packet to travel from source to destination, measuring speed of response.  \nThroughput is the total amount of data successfully transferred over a given period, measuring overall capacity or volume.",
+    "Y": "Latency is the time it takes for a single data packet to travel from source to destination, measuring speed of response.  \nThroughput is the total amount of data successfully transferred over a given period, measuring overall capacity or volume.",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q005",
+    "category": "基本语言能力",
+    "question": "严格输出一个合法 JSON 对象，只有 title 和 risks 两个字段。title 为字符串“CUDA优化”，risks 为恰好两项字符串数组，列出两种常见优化风险。不准添加 Markdown 代码块。",
+    "criteria": "JSON 语法合法；字段准确；两项合理风险；没有多余内容。",
+    "X": "{\n  \"title\": \"CUDA优化\",\n  \"risks\": [\"内存带宽瓶颈\", \"线程块尺寸选择不当\"]\n}",
+    "Y": "{\n  \"title\": \"CUDA优化\",\n  \"risks\": [\"内存带宽瓶颈\", \"线程块尺寸不当\"]\n}",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q019",
+    "category": "进阶解题能力",
+    "question": "编写Python函数 unique_keep_first(items)，输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。例如 ['GPU','cpu','gpu','CPU','Cuda'] 应返回 ['GPU','cpu','Cuda']。请给出代码和时间复杂度。",
+    "criteria": "正确处理大小写；保留首次顺序；代码可运行；通常为O(n)。",
+    "X": "以下是实现 `unique_keep_first` 函数的代码：\n\n```python\ndef unique_keep_first(items):\n    \"\"\"\n    输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。\n    \n    Args:\n        items: 字符串列表\n        \n    Returns:\n        去重后的列表，保留首次出现的原始写法\n    \"\"\"\n    seen = set()  # 用于记录已见过的字符串（不区分大小写）\n    result = []\n    \n    for item in items:\n        # 转换为小写用于比较，但保留原始字符串\n        lower_item = item.lower()\n        if lower_item not in seen:\n            seen.add(lower_item)\n            result.append(item)  # 保留原始写法\n    \n    return result\n```\n\n**时间复杂度分析：**\n\n- **时间复杂度：O(n)**，其中 n 是输入列表的长度。\n  - 遍历列表一次：O(n)\n  - 每次 `lower()` 操作：O(1)（假设字符串长度固定或平均长度为常数）\n  - `set` 的查找和插入操作：O(1) 平均情况\n  - `result.append()`：O(1)\n  - 总体为 O(n)\n\n- **空间复杂度：O(n)**，最坏情况下所有字符串都不同，`seen` 集合和 `result` 列表各存储 n 个元素。\n\n**示例测试：**\n\n```python\n# 测试用例\ntest_list = ['GPU','cpu','gpu','CPU','Cuda']\nresult = unique_keep_first(test_list)\nprint(result)  # 输出: ['GPU', 'cpu', 'Cuda']\n\n# 验证其他情况\nprint(unique_keep_first(['a', 'A', '",
+    "Y": "以下是实现 `unique_keep_first` 函数的代码：\n\n```python\ndef unique_keep_first(items):\n    \"\"\"\n    输入字符串列表，忽略大小写去重，但保留每个字符串首次出现时的原始写法。\n    \n    Args:\n        items: 字符串列表\n        \n    Returns:\n        去重后的列表，保留首次出现的原始写法\n    \"\"\"\n    seen = set()  # 用于记录已见过的字符串（不区分大小写）\n    result = []\n    \n    for item in items:\n        # 转换为小写检查是否已见过\n        lower_item = item.lower()\n        if lower_item not in seen:\n            seen.add(lower_item)\n            result.append(item)  # 保留原始写法\n    \n    return result\n```\n\n**时间复杂度分析：**\n\n- **时间复杂度：O(n)**，其中 n 是输入列表的长度。\n  - 遍历列表一次：O(n)\n  - 每次检查 `lower_item not in seen`：set 查找是 O(1) 平均情况\n  - 添加到 set：O(1) 平均情况\n  - 总体：O(n × 1) = O(n)\n\n- **空间复杂度：O(n)**，最坏情况下所有字符串都不重复，需要存储 n 个字符串到 `seen` set 和 `result` 列表。\n\n**示例测试：**\n\n```python\n# 测试用例\ntest_list = ['GPU','cpu','gpu','CPU','Cuda']\nresult = unique_keep_first(test_list)\nprint(result)  # 输出: ['GPU', 'cpu', 'Cuda']\n```\n\n**说明：**\n- 使用 `set` 来记录已见过的字符串（小写形式），确保 O(1) 查找效率。\n",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q020",
+    "category": "进阶解题能力",
+    "question": "有SQL表 events(user_id,event_id,event_time)。请写SQL，返回每位用户最新的三条事件。如果event_time相同，使用event_id降序决定先后。不足三条则全部返回。",
+    "criteria": "使用分组窗口排序或等价方案；处理时间相同；每用户最多三条。",
+    "X": "你可以使用窗口函数 `ROW_NUMBER()` 来为每个用户按 `event_time` 降序、`event_id` 降序排序，然后取每组中排名前3的记录。\n\n以下是 SQL 查询语句：\n\n```sql\nWITH ranked_events AS (\n    SELECT\n        user_id,\n        event_id,\n        event_time,\n        ROW_NUMBER() OVER (\n            PARTITION BY user_id\n            ORDER BY event_time DESC, event_id DESC\n        ) AS rn\n    FROM events\n)\nSELECT\n    user_id,\n    event_id,\n    event_time\nFROM ranked_events\nWHERE rn <= 3\nORDER BY user_id, rn;\n```\n\n### 说明：\n\n- `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_time DESC, event_id DESC)`：\n  - 按用户分组（`PARTITION BY user_id`）。\n  - 在每个用户组内，按 `event_time` 降序排序（最新事件在前），如果时间相同，则按 `event_id` 降序（大 ID 在前）。\n  - 为每行分配一个从 1 开始的序号 `rn`。\n\n- `WHERE rn <= 3`：只保留每个用户最新的 3 条记录。\n\n- 最后 `ORDER BY user_id, rn`：按用户排序，再按记录顺序排列，便于阅读。\n\n> ✅ **注意**：此查询假设 `event_time` 是可比较的日期/时间类型，且 `event_id` 是数字或可比较的类型。如果 `event_id` 是字符串，需确保排序逻辑符合预期（如按字典序降序）。\n\n---\n\n✅ **兼容性**：此写法适用于 PostgreSQL、MySQL 8.0+、SQL Server、Oracle、SQLite 3.35+",
+    "Y": "你可以使用窗口函数 `ROW_NUMBER()` 来为每个用户按 `event_time` 降序、`event_id` 降序排序，然后取每组中排名前3的记录。\n\n以下是 SQL 查询语句：\n\n```sql\nWITH ranked_events AS (\n    SELECT\n        user_id,\n        event_id,\n        event_time,\n        ROW_NUMBER() OVER (\n            PARTITION BY user_id\n            ORDER BY event_time DESC, event_id DESC\n        ) AS rn\n    FROM events\n)\nSELECT\n    user_id,\n    event_id,\n    event_time\nFROM ranked_events\nWHERE rn <= 3\nORDER BY user_id, rn;\n```\n\n### 说明：\n\n- `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_time DESC, event_id DESC)`：\n  - 按用户分组（`PARTITION BY user_id`）。\n  - 在每个用户组内，按 `event_time` 降序排序（最新事件优先），如果时间相同，则按 `event_id` 降序（大 ID 优先）。\n  - 为每行分配一个从 1 开始的序号 `rn`。\n\n- `WHERE rn <= 3`：只保留每个用户最新的 3 条记录。\n\n- 最后 `ORDER BY user_id, rn`：按用户排序，再按记录顺序排列，便于阅读。\n\n### 注意：\n\n- 如果某个用户事件少于 3 条，会自动返回所有记录（因为 `rn` 会从 1 开始递增，不会超过实际记录数）。\n- 如果你希望结果按用户分组显示，也可以在 `ORDER BY` 中只保留 `user_id`，或者加 `GROUP BY user_id`，但通常不需要，因为 `rn` 已经保证了顺序。\n\n✅ 这个",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q030",
+    "category": "进阶推理能力",
+    "question": "实验中GPU0运行BF16，GPU1运行INT8。测得INT8单次请求快8%，但输出Token数也少5%。请分析为什么不能直接认定INT8带来了8%的端到端加速，并设计一个更公平的对照实验。",
+    "criteria": "识别Token数混杂因素；讨论GPU差异；固定工作量；多轮测量与交叉实验。",
+    "X": "这是一个非常典型且重要的实验设计问题。表面上看，INT8模型在单次请求中“快8%”，但“输出Token数少5%”，这说明**端到端加速不能简单由单次请求耗时的比较得出**，因为两个模型在“完成相同任务”（即生成相同长度的输出）上的表现不同，且资源分配、推理路径、批处理策略等可能不一致。\n\n---\n\n## 一、为什么不能直接认定INT8带来了8%的端到端加速？\n\n### 1. **任务完成度不一致**\n- INT8模型在相同时间内生成的Token更少（少5%），意味着它“提前结束”或“提前达到终止条件”。\n- 如果任务是“生成固定长度的文本”（如生成100个Token），INT8模型可能只生成95个Token就停止了，而BF16模型生成了100个Token。\n- 因此，INT8模型虽然“更快”，但**没有完成完整任务**，不能直接比较“单位任务耗时”。\n\n### 2. **吞吐量 vs 延迟的混淆**\n- 单次请求耗时（延迟）快8%，是“单次请求的平均响应时间”。\n- 但端到端加速应衡量“单位任务的总耗时”或“单位Token的平均耗时”。\n- 如果INT8模型生成更少Token，它可能在“单位Token耗时”上反而更慢（因为Token数少，但总耗时可能没减少8%）。\n\n### 3. **可能的其他因素干扰**\n- GPU负载不均衡：GPU0和GPU1可能负载不同，或存在通信开销、数据预处理差异。\n- 模型结构差异：INT8和BF1",
+    "Y": "这是一个非常典型且重要的实验设计问题。表面上看，INT8模型在单次请求中“快8%”，但“输出Token数少5%”，这说明**端到端加速不能简单由单次请求耗时的比较得出**，因为两个模型在“完成相同任务”（即生成相同长度的输出）上的表现不同，且资源分配、推理路径、批处理策略等可能不一致。\n\n---\n\n## 一、为什么不能直接认定INT8带来了8%的端到端加速？\n\n### 1. **任务完成度不一致**\n- INT8模型在相同时间内生成的Token更少（少5%），意味着它“提前结束”或“提前达到终止条件”。\n- 如果任务是“生成固定长度的文本”（如生成100个Token），INT8模型可能只生成95个Token就停止了，而BF16模型生成了100个Token。\n- 因此，INT8模型虽然“更快”，但**没有完成完整任务**，不能直接比较“单位任务耗时”。\n\n### 2. **吞吐量 vs 延迟的混淆**\n- 单次请求耗时（延迟）快8%，是“单次请求的平均响应时间”。\n- 但端到端加速应考虑“单位Token生成时间”或“单位任务完成时间”。\n- 如果INT8模型生成更少Token，它可能在“单位Token生成时间”上更慢（因为Token数少，但时间也少），需要进一步分析。\n\n### 3. **可能的其他因素干扰**\n- GPU负载不均衡：GPU0和GPU1可能负载不同，或存在通信开销、数据预处理差异。\n- 模型结构差异：INT8和BF16模型可能不是完全相同的模型",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q031",
+    "category": "专业术语与准确性",
+    "question": "解释CUDA中的Warp、Block、SM Occupancy。说明为何Occupancy高不必然意味着Kernel速度快。",
+    "criteria": "Warp 32线程；Block组织线程；Occupancy定义正确；解释访存、指令和带宽等性能限制。",
+    "X": "在CUDA编程中，**Warp、Block、SM Occupancy** 是理解GPU并行计算架构和性能优化的关键概念。下面逐一解释，并说明为何 **高Occupancy不必然意味着Kernel速度快**。\n\n---\n\n## 一、基本概念解释\n\n### 1. Warp（线程束）\n- **定义**：CUDA中最小的调度单位，由32个线程组成（称为“Warp”）。\n- **行为**：Warp中的所有线程**必须同步执行**，即在同一个指令周期内执行相同的指令（SIMT架构）。\n- **重要性**：Warp调度器会将Warp分配到SM上执行。如果Warp中的线程存在分支（如if/else），可能导致**Warp Divergence**（分支发散），降低效率。\n\n### 2. Block（线程块）\n- **定义**：一组线程的集合，通常由多个Warp组成（如128、256、512线程）。\n- **作用**：Block是CUDA内核中线程组织的基本单位，可以被调度到SM上执行。\n- **限制**：Block大小受硬件限制（如最大线程数、共享内存大小等），通常为128~1024线程。\n\n### 3. SM（Streaming Multiprocessor，流式多处理器）\n- **定义**：GPU中的计算核心单元，每个SM包含多个CUDA核心、共享内存、寄存器文件、L1缓存等。\n- **功能**：SM负责调度Block、执行线程、管理资源。\n- **关键指标**：每个SM有固定数量的**寄存器组**、**共享内存**、**CUDA核心数**。\n\n### 4. SM Occupancy（SM利用率）\n-",
+    "Y": "在CUDA编程中，**Warp、Block、SM Occupancy** 是理解GPU并行计算架构和性能优化的关键概念。下面逐一解释，并说明为何 **高Occupancy不必然意味着Kernel速度快**。\n\n---\n\n## 一、基本概念解释\n\n### 1. Warp（线程束）\n- **定义**：CUDA中最小的调度单位，由32个线程组成（称为“Warp”）。\n- **特性**：\n  - Warp内所有线程**必须同步执行**（即同一指令流，同一时钟周期执行）。\n  - 如果Warp内线程执行路径不同（如分支），会引发**Warp Divergence**，导致部分线程空转，降低效率。\n  - Warp是GPU硬件调度的基本单位，SM（Streaming Multiprocessor）一次只能发射一个Warp的指令。\n\n### 2. Block（线程块）\n- **定义**：一组线程的集合，由多个Warp组成（通常为1~32个Warp，即32~1024个线程）。\n- **特性**：\n  - Block内线程可以共享内存（shared memory）和同步（如`__syncthreads()`）。\n  - Block是CUDA kernel的调度单位，由SM调度执行。\n  - Block之间不共享内存，需通过全局内存通信。\n\n### 3. SM（Streaming Multiprocessor）Occupancy\n- **定义**：指一个SM在某一时刻能同时运行多少个Block（或Warp）的“负载程度”。\n- **计算公式**：\n  ```\n  Occupancy = (实际运行的Block数 × Block内线程数) / (SM最大线程数)\n  ```\n  或更精确地，考虑Warp数量：\n  ```\n  Occupancy",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q032",
+    "category": "专业术语与准确性",
+    "question": "解释LLM Serving中的Prefill、Decode、TTFT和TPOT。为什么TTFT降低不代表TPOT一定降低？",
+    "criteria": "四个概念准确；区分首Token处理和后续Token生成。",
+    "X": "在LLM（大语言模型）Serving（服务部署）中，**Prefill、Decode、TTFT、TPOT** 是衡量推理性能和用户体验的关键指标。下面逐一解释它们的含义，再分析为什么 **TTFT降低不代表TPOT一定降低**。\n\n---\n\n## 1. Prefill（预填充）\n\n- **定义**：指模型在接收到完整输入（prompt）后，开始生成第一个 token 之前所进行的计算过程。\n- **包含内容**：包括输入 token 的嵌入、位置编码、KV Cache 初始化、前向传播到第一层等。\n- **目的**：为后续的 token 生成建立上下文状态。\n- **重要性**：对于长 prompt 或大模型，Prefill 是计算密集型阶段，耗时较长。\n\n---\n\n## 2. Decode（解码 / 生成阶段）\n\n- **定义**：模型在生成第一个 token 后，逐 token 生成后续 token 的过程。\n- **特点**：每个 token 生成是串行的（在单个 token 生成完成前，下一个 token 无法开始），但现代系统通过并行化（如并行解码、流水线、KV Cache 优化）提升效率。\n- **关键指标**：Token 生成延迟、吞吐量（tokens/sec）。\n\n---\n\n## 3. TTFT（Time To First Token）\n\n- **定义**：从用户发送请求（prompt）到模型返回第一个 token 所需的时间。\n- **组成**：TTFT = Prefill 时间（因为第一个 token 必须在 Prefill 完成后才能生成）。\n- **意义**：直接影响用户体验，用户等待“第一个字”出现的时间越短，体验越好。\n- **优化目标**：降低 TTFT 是服务端优化的首要目标。\n\n---\n\n## 4.",
+    "Y": "在LLM（大语言模型）Serving（服务部署）中，**Prefill、Decode、TTFT、TPOT** 是衡量推理性能和用户体验的关键指标。下面逐一解释它们的含义，再分析为什么 **TTFT降低不代表TPOT一定降低**。\n\n---\n\n## 1. Prefill（预填充）\n\n- **定义**：指模型在接收到完整输入（prompt）后，开始生成第一个token之前所进行的计算过程。这个阶段包括：\n  - 输入token的嵌入（embedding）\n  - 位置编码（positional encoding）\n  - 通过模型前几层（如Transformer的encoder层）计算上下文表示\n- **目的**：为后续生成建立“状态”或“上下文表示”，是生成第一个token的基础。\n- **重要性**：在长输入或复杂prompt下，Prefill耗时显著，是推理延迟的主要来源之一。\n\n---\n\n## 2. Decode（解码 / 生成阶段）\n\n- **定义**：模型在生成第一个token后，逐token地进行推理，每生成一个token，就进行一次前向计算，直到生成完整输出。\n- **特点**：\n  - 每个token的生成依赖于前一个token（自回归）。\n  - 通常使用KV Cache（Key-Value Cache）来缓存中间状态，避免重复计算。\n- **性能瓶颈**：虽然单步计算快，但若生成长序列，仍可能因计算或内存瓶颈导致延迟。\n\n---\n\n## 3. TTFT（Time To First Token）\n\n- **定义**：从用户发送请求（prompt）到模型返回**第一个token**的时间。\n- **组成**：TTFT = Prefill时间（主要部分） + 生成第一个token的Decode时间（通常很小）。\n- **意义**：用户体验",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q033",
+    "category": "专业术语与准确性",
+    "question": "一个LM Head的权重形状为[151936,4096]。解释逐输出行对称INT8量化时scale的含义、近似反量化公式，以及量化误差主要来自什么。",
+    "criteria": "权重维度准确；每行scale；W≈q×scale；舍入与截断误差；不能保证Token完全一致。",
+    "X": "在逐输出行对称INT8量化（per-output-row symmetric INT8 quantization）中，LM Head 的权重形状为 [151936, 4096]，表示有 151936 个输出特征（即词表大小或输出维度），每个输出特征对应一个长度为 4096 的权重向量（即输入维度）。\n\n---\n\n## 一、Scale 的含义\n\n在对称 INT8 量化中，**scale** 是用于将原始浮点权重映射到 INT8 范围 [-127, 127]（或 [-128, 127]，取决于实现）的缩放因子。\n\n对于每个输出行（即每个输出维度，共 151936 行），我们独立计算一个 scale：\n\n- 对第 i 行（i ∈ [0, 151936)）的权重向量 w_i ∈ ℝ⁴⁰⁹⁶，计算其最大绝对值：\n  \\[\n  \\text{max\\_abs}_i = \\max_{j} |w_{i,j}|\n  \\]\n- 然后，scale_i 通常定义为：\n  \\[\n  \\text{scale}_i = \\frac{\\text{max\\_abs}_i}{127}\n  \\]\n  （或 128，取决于是否包含 0，但通常对称量化使用 127）\n\n> ✅ **Scale 的含义**：它表示该行原始浮点权重的最大绝对值与 INT8 最大绝对值（127）的比值。它决定了量化后 INT8 值的“粒度”或“精度”。\n\n---\n\n## 二、近似反量化公式",
+    "Y": "在逐输出行对称INT8量化（per-output-row symmetric INT8 quantization）中，LM Head 的权重形状为 [151936, 4096]，表示有 151936 个输出特征（即词表大小或输出维度），每个输出特征对应一个长度为 4096 的权重向量（即输入维度）。\n\n---\n\n## 一、Scale 的含义\n\n在对称 INT8 量化中，**scale** 是用于将原始浮点权重映射到 INT8 范围 [-127, 127]（或 [-128, 127]，取决于实现）的缩放因子。\n\n对于每个输出行（即每个输出维度，共 151936 行），我们独立计算一个 scale：\n\n- 对第 i 行（i ∈ [0, 151936)）的权重向量 w_i ∈ ℝ⁴⁰⁹⁶，计算其最大绝对值：\n  \\[\n  \\text{max\\_abs}_i = \\max_{j} |w_{i,j}|\n  \\]\n- 然后，该行的 scale 为：\n  \\[\n  \\text{scale}_i = \\frac{\\text{max\\_abs}_i}{127}\n  \\]\n  （或 128，取决于是否包含 0，但通常对称量化使用 127）\n\n> **注意**：scale_i 是一个标量，用于将该行的浮点权重缩放为 INT8 范围。例如，原始权重 w_ij 被量化为：\n> \\[\n> q_{ij} = \\text{round}\\left( \\frac{w_{ij",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q034",
+    "category": "专业术语与准确性",
+    "question": "区分UVA、Pinned Memory与Mapped Pinned Memory。解释为什么在WSL2下设置VLLM_WSL2_ENABLE_PIN_MEMORY=1不等于打开GPU硬件UVA能力。",
+    "criteria": "区分地址能力、页锁定和映射；识别WSL2限制；不混淆环境开关与硬件开关。",
+    "X": "这是一个非常深入且重要的问题，涉及 CUDA 内存管理、WSL2 架构、以及 VLLM 的内存优化机制。我们来逐层拆解：\n\n---\n\n## 一、UVA（Unified Virtual Addressing）是什么？\n\n**UVA 是 NVIDIA GPU 的硬件特性**，允许 CPU 和 GPU 共享同一虚拟地址空间。这意味着：\n\n- CPU 可以直接通过虚拟地址访问 GPU 显存（无需显式拷贝）。\n- 无需 CPU-GPU 显存拷贝（如 `cudaMemcpy`），提升性能。\n- 依赖于 NVIDIA 驱动和硬件支持（如 Ampere 及以上架构）。\n- **仅在 Linux + NVIDIA 驱动 + CUDA 环境下有效**，且需要显式启用（如 `cudaSetDeviceFlags(cudaDeviceEnableUVA)`）。\n\n> ⚠️ 注意：UVA 是**硬件级**的虚拟地址空间统一，不是软件层面的内存映射。\n\n---\n\n## 二、Pinned Memory（锁页内存）是什么？\n\n**Pinned Memory 是 CPU 端的内存区域**，由操作系统和 CUDA 驱动管理，具有以下特性：\n\n- 不能被操作系统换页（page-out），始终驻留在物理内存中。\n- CPU 可以直接访问，无需页表转换，适合高速数据传输。\n- 通过 `cudaHostRegister()` 或 `torch.cuda.empty_cache()` + `pin_memory=True` 创建。\n- **用于加速 `cudaMemcpy`**，减少拷贝开销。\n\n> ✅ 优点：CPU-GPU 数据传输更快。\n> ❌ 缺点：内存不能被交换，占用物理内存，且不能直接被 GPU 访问（除非配合 UVA）。\n\n---\n\n## 三、Mapped Pinned Memory（映",
+    "Y": "这是一个非常深入且重要的问题，涉及 CUDA 内存管理、WSL2 架构、以及 VLLM 的内存优化机制。我们来逐层拆解：\n\n---\n\n## 一、UVA（Unified Virtual Addressing）是什么？\n\n**UVA 是 NVIDIA GPU 的硬件特性**，允许 CPU 和 GPU 共享同一虚拟地址空间。这意味着：\n\n- CPU 可以直接通过虚拟地址访问 GPU 显存（无需显式拷贝）。\n- 无需 CPU-GPU 显存拷贝（如 `cudaMemcpy`），提升性能。\n- 依赖于 NVIDIA 驱动和硬件支持（如 Ampere 及以上架构）。\n- **仅在 Linux + NVIDIA 驱动 + CUDA 环境下有效**，且需要显式启用（如 `cudaSetDeviceFlags(cudaDeviceEnableUVA)`）。\n\n> ⚠️ 注意：UVA 是**硬件级**的虚拟地址空间统一，不是软件层面的内存映射。\n\n---\n\n## 二、Pinned Memory（锁页内存）是什么？\n\n**Pinned Memory 是 CPU 端的内存区域**，由操作系统和 CUDA 驱动管理，具有以下特性：\n\n- 不能被操作系统换页（page-out），始终驻留在物理内存中。\n- CPU 可以直接访问，无需页表转换，适合高速数据传输。\n- 通过 `cudaHostRegister()` 或 `torch.cuda.empty_cache()` + `pin_memory=True` 创建。\n- 用于 `cudaMemcpyAsync` 时提升性能，避免页表抖动。\n\n> ✅ 优点：CPU-GPU 数据传输加速。\n> ❌ 缺点：不能直接被 GPU 显存访问（除非配合 UVA）。\n\n---\n\n## 三、Mapped Pinned Memory（映射锁页内存）是什么",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  },
+  {
+    "id": "Q035",
+    "category": "专业术语与准确性",
+    "question": "解释Tensor Parallel和Pipeline Parallel的区别。再解释为什么针对单个4096维输入向量编写的INT8 GEMV不能直接替代所有Prefill阶段的矩阵乘法。",
+    "criteria": "并行切分方式正确；区分GEMV和GEMM；考虑多Token输入、并行通信与形状要求。",
+    "X": "这是一个非常深入的分布式训练/推理系统问题，涉及模型并行策略和算子优化的边界。我将分两部分详细解释：\n\n---\n\n## 一、Tensor Parallel 与 Pipeline Parallel 的区别\n\n### 1. Tensor Parallel（张量并行）\n- **核心思想**：将一个张量（通常是权重矩阵或激活张量）**水平切分**，分配到多个GPU上，每个GPU只计算一部分。\n- **切分维度**：通常是按行（行切分）或列（列切分）切分矩阵。\n  - 例如：一个 1000×4096 的权重矩阵，按行切分到 4 个 GPU，每个 GPU 负责 250 行。\n- **通信开销**：在前向/后向传播中，需要在 GPU 之间交换切分部分的张量（如激活值或梯度）。\n- **适用场景**：适合大矩阵（如大模型的权重矩阵），尤其是当矩阵维度大但GPU显存有限时。\n- **优点**：\n  - 显存占用减少（每个GPU只存一部分张量）\n  - 可扩展性强（可增加GPU数量）\n- **缺点**：\n  - 通信开销大（尤其是当切分维度导致大量数据交换）\n  - 需要精心设计切分策略（如按列切分适合GEMM，按行切分适合激活）\n\n### 2. Pipeline Parallel（流水线并行）\n- **核心思想**：将模型**按层切分**，每层分配到一个或多个GPU上，形成“流水线”。\n- **工作方式**：每个GPU负责模型的一部分层，数据像流水一样从一个GPU传到下一个GPU。\n-",
+    "Y": "这是一个非常深入的分布式训练/推理系统问题，涉及模型并行策略和算子优化的边界。我将分两部分详细解释：\n\n---\n\n## 一、Tensor Parallel 与 Pipeline Parallel 的区别\n\n### 1. Tensor Parallel（张量并行）\n\n**核心思想**：将一个张量（通常是权重矩阵或激活张量）**水平切分**，分配到多个GPU上，每个GPU只计算一部分张量。\n\n- **切分维度**：通常是按矩阵的行（或列）切分，例如将一个 1024×4096 的权重矩阵切分为 4 个 256×4096 的子矩阵，分别放在 4 个 GPU 上。\n- **通信开销**：在前向/后向传播中，需要在GPU之间交换切分部分的张量（如通过 All-Reduce 或 All-Gather）。\n- **适用场景**：适合大矩阵（如大模型的权重矩阵），尤其是当单个GPU显存不足时。\n- **优点**：可以显著减少单卡显存占用，提升单个算子的并行效率。\n- **缺点**：通信开销大，尤其在梯度更新时需要同步，可能成为瓶颈。\n\n**示例**：\n```\n原矩阵 W (1024, 4096) → 切分后：\nGPU0: W[0:256, :]  \nGPU1: W[256:512, :]  \nGPU2: W[512:768, :]  \nGPU3: W[768:1024, :]\n```\n\n---\n\n### 2. Pipeline Parallel（流水线并行）\n\n**核心思想**：将模型的**层（Layer",
+    "score_X_0_to_4": null,
+    "score_Y_0_to_4": null,
+    "notes": ""
+  }
+]
