@@ -1,0 +1,48 @@
+{
+  "model": "${QWEN_MODEL_DIR}",
+  "artifact": "${INT8_LM_HEAD_ARTIFACT}",
+  "artifact_sha256": "855f13d244fe0b851c2f131ca7e261ef38f569e26c2921ee9b6835b7d40929ca",
+  "stages": [
+    [
+      "A1_BF16",
+      false
+    ],
+    [
+      "B1_VEC4",
+      true
+    ],
+    [
+      "B2_VEC4",
+      true
+    ],
+    [
+      "A2_BF16",
+      false
+    ]
+  ],
+  "requests_per_stage": 8,
+  "warmup_per_stage": 2,
+  "cmd": [
+    "vllm",
+    "serve",
+    "${QWEN_MODEL_DIR}",
+    "--served-model-name",
+    "qwen-int8-vec4",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8002",
+    "--tensor-parallel-size",
+    "1",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "2048",
+    "--max-num-batched-tokens",
+    "2048",
+    "--max-num-seqs",
+    "8",
+    "--gpu-memory-utilization",
+    "0.85"
+  ]
+}

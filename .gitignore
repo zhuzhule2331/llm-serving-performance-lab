@@ -27,6 +27,10 @@ run_logs/
 *.log
 !docs/**/*.log
 
+# vec4 local run outputs (never publish generated runner output)
+int8-lm-head/vec4/operator/run/
+int8-lm-head/vec4/serving/results/
+
 # ---- Profiler captures (hundreds of MB; deliberately not published) ----
 *.nsys-rep
 *.ncu-rep

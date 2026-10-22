@@ -1,0 +1,239 @@
+{
+  "char4": {
+    "kernel": "int8_gemv_char4_probe(const signed char *, const float *, const float *, float *, int, int)",
+    "gpu__time_duration.sum": {
+      "value": 742.56,
+      "unit": "us"
+    },
+    "dram__bytes_read.sum": {
+      "value": 622.98176,
+      "unit": "Mbyte"
+    },
+    "dram__bytes_read.sum.per_second": {
+      "value": 838.964878,
+      "unit": "Gbyte/s"
+    },
+    "dram__bytes_read.sum.pct_of_peak_sustained_elapsed": {
+      "value": 92.069515,
+      "unit": "%"
+    },
+    "gpu__compute_memory_throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 99.182542,
+      "unit": "%"
+    },
+    "sm__throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 60.246783,
+      "unit": "%"
+    },
+    "sm__inst_executed_pipe_lsu.avg.pct_of_peak_sustained_elapsed": {
+      "value": 60.246783,
+      "unit": "%"
+    },
+    "l1tex__data_pipe_lsu_wavefronts.avg.pct_of_peak_sustained_elapsed": {
+      "value": 99.182542,
+      "unit": "%"
+    },
+    "l1tex__t_sector_hit_rate.pct": {
+      "value": 94.086783,
+      "unit": "%"
+    },
+    "lts__t_sector_hit_rate.pct": {
+      "value": 0.989261,
+      "unit": "%"
+    },
+    "memory_l2_theoretical_sectors_global": {
+      "value": 330916608.0,
+      "unit": "sectors"
+    },
+    "memory_l2_theoretical_sectors_global_ideal": {
+      "value": 97542912.0,
+      "unit": "sectors"
+    },
+    "sass__inst_executed_global_loads": {
+      "value": 24461696.0,
+      "unit": "inst"
+    },
+    "smsp__inst_executed.sum": {
+      "value": 81133824.0,
+      "unit": "inst"
+    },
+    "launch__registers_per_thread": {
+      "value": 38.0,
+      "unit": "register/thread"
+    },
+    "sm__warps_active.avg.pct_of_peak_sustained_active": {
+      "value": 95.677087,
+      "unit": "%"
+    },
+    "sm__warps_active.avg.per_cycle_active": {
+      "value": 45.925002,
+      "unit": "warp"
+    },
+    "pcsamp_stall_counts": {
+      "lg_throttle": 42429.0,
+      "long_scoreboard": 14551.0,
+      "mio_throttle": 10080.0,
+      "short_scoreboard": 2709.0,
+      "wait": 5269.0,
+      "not_selected": 4573.0
+    }
+  },
+  "v2": {
+    "kernel": "int8_gemv_v2(const signed char *, const float *, const float *, float *, int, int)",
+    "gpu__time_duration.sum": {
+      "value": 748.736,
+      "unit": "us"
+    },
+    "dram__bytes_read.sum": {
+      "value": 623.3984,
+      "unit": "Mbyte"
+    },
+    "dram__bytes_read.sum.per_second": {
+      "value": 832.601077,
+      "unit": "Gbyte/s"
+    },
+    "dram__bytes_read.sum.pct_of_peak_sustained_elapsed": {
+      "value": 91.370023,
+      "unit": "%"
+    },
+    "gpu__compute_memory_throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 94.923788,
+      "unit": "%"
+    },
+    "sm__throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 94.923788,
+      "unit": "%"
+    },
+    "sm__inst_executed_pipe_lsu.avg.pct_of_peak_sustained_elapsed": {
+      "value": 94.923788,
+      "unit": "%"
+    },
+    "l1tex__data_pipe_lsu_wavefronts.avg.pct_of_peak_sustained_elapsed": {
+      "value": 47.610293,
+      "unit": "%"
+    },
+    "l1tex__t_sector_hit_rate.pct": {
+      "value": 79.917423,
+      "unit": "%"
+    },
+    "lts__t_sector_hit_rate.pct": {
+      "value": 1.04197,
+      "unit": "%"
+    },
+    "memory_l2_theoretical_sectors_global": {
+      "value": 97542912.0,
+      "unit": "sectors"
+    },
+    "memory_l2_theoretical_sectors_global_ideal": {
+      "value": 97542912.0,
+      "unit": "sectors"
+    },
+    "sass__inst_executed_global_loads": {
+      "value": 39047552.0,
+      "unit": "inst"
+    },
+    "smsp__inst_executed.sum": {
+      "value": 97694848.0,
+      "unit": "inst"
+    },
+    "launch__registers_per_thread": {
+      "value": 40.0,
+      "unit": "register/thread"
+    },
+    "sm__warps_active.avg.pct_of_peak_sustained_active": {
+      "value": 94.885412,
+      "unit": "%"
+    },
+    "sm__warps_active.avg.per_cycle_active": {
+      "value": 45.544998,
+      "unit": "warp"
+    },
+    "pcsamp_stall_counts": {
+      "lg_throttle": 35967.0,
+      "long_scoreboard": 22103.0,
+      "mio_throttle": 6453.0,
+      "short_scoreboard": 1771.0,
+      "wait": 5717.0,
+      "not_selected": 6624.0
+    }
+  },
+  "vec4": {
+    "kernel": "int8_gemv_char4_float4_probe(const signed char *, const float *, const float *, float *, int, int)",
+    "gpu__time_duration.sum": {
+      "value": 706.368,
+      "unit": "us"
+    },
+    "dram__bytes_read.sum": {
+      "value": 623.256448,
+      "unit": "Mbyte"
+    },
+    "dram__bytes_read.sum.per_second": {
+      "value": 882.339585,
+      "unit": "Gbyte/s"
+    },
+    "dram__bytes_read.sum.pct_of_peak_sustained_elapsed": {
+      "value": 96.829799,
+      "unit": "%"
+    },
+    "gpu__compute_memory_throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 96.982505,
+      "unit": "%"
+    },
+    "sm__throughput.avg.pct_of_peak_sustained_elapsed": {
+      "value": 48.27838,
+      "unit": "%"
+    },
+    "sm__inst_executed_pipe_lsu.avg.pct_of_peak_sustained_elapsed": {
+      "value": 27.156589,
+      "unit": "%"
+    },
+    "l1tex__data_pipe_lsu_wavefronts.avg.pct_of_peak_sustained_elapsed": {
+      "value": 31.792089,
+      "unit": "%"
+    },
+    "l1tex__t_sector_hit_rate.pct": {
+      "value": 79.9227,
+      "unit": "%"
+    },
+    "lts__t_sector_hit_rate.pct": {
+      "value": 0.713826,
+      "unit": "%"
+    },
+    "memory_l2_theoretical_sectors_global": {
+      "value": 97542912.0,
+      "unit": "sectors"
+    },
+    "memory_l2_theoretical_sectors_global_ideal": {
+      "value": 97542912.0,
+      "unit": "sectors"
+    },
+    "sass__inst_executed_global_loads": {
+      "value": 9875840.0,
+      "unit": "inst"
+    },
+    "smsp__inst_executed.sum": {
+      "value": 66547968.0,
+      "unit": "inst"
+    },
+    "launch__registers_per_thread": {
+      "value": 39.0,
+      "unit": "register/thread"
+    },
+    "sm__warps_active.avg.pct_of_peak_sustained_active": {
+      "value": 97.990396,
+      "unit": "%"
+    },
+    "sm__warps_active.avg.per_cycle_active": {
+      "value": 47.03539,
+      "unit": "warp"
+    },
+    "pcsamp_stall_counts": {
+      "lg_throttle": 81.0,
+      "long_scoreboard": 69797.0,
+      "mio_throttle": 1782.0,
+      "short_scoreboard": 817.0,
+      "wait": 3794.0,
+      "not_selected": 374.0
+    }
+  }
+}

@@ -5,14 +5,25 @@ replace the BF16 LM Head projection with a **per-output-row symmetric INT8 weigh
 representation and a hand-written **CUDA GEMV V2** kernel, then measure what actually
 changes — at the kernel level and at the serving level.
 
-> **Headline, with its scope attached:** across **four independent microbenchmark runs**
+> **Latest vec4 follow-up (2026-10-21, separate experiment):**
+>
+> - operator: BF16 **2.245 ms** → V2 **1.459 ms** → vec4 **1.040 ms**; BF16→vec4 **2.159×**;
+> - NCU: global-load instructions **−74.7%**, LSU **94.9%→27.2%**, DRAM **≈882 GB/s**
+>   (**96.8%** sustained peak);
+> - serving: 32-request ABBA client-side approximate TPOT **−3.44%** (descriptive only).
+>
+> See [`vec4/README.md`](vec4/README.md). vec4 is not a whole-model speedup and must not be
+> compared with or added to the V2 96-request result.
+
+> **Historical V2 headline, with its scope attached:** across **four independent microbenchmark runs**
 > the shape-specific kernel speedup ranged from **1.229× to 1.978×** — median of the three
 > repeat runs **≈1.303×**. The spread is large and is reported in full; **the fastest run is
 > not used as the representative result.** A separate 96-request ABBA/BAAB client-side serving
 > benchmark shows a **≈4.14% mean approximate-TPOT reduction** under CUDA Graph + `torch.compile`.
 > **These are different metrics.** Neither one is a whole-model speedup, and the 4.14%
-> figure is an observation with known timing and thermal confounds, not a proven
-> statistically significant gain.
+> figure is an observation with known timing and thermal confounds. No significance test was
+> performed, so no statistically significant gain is claimed. The V2 material below is retained
+> as the historical baseline.
 
 ---
 
@@ -440,7 +451,8 @@ derivation is reproduced step by step in
 > the `_unblinded_scores.csv` above.
 >
 > This was **one subjective review pass** with no second rater, no inter-rater agreement and
-> no hypothesis test. **41/52 vs 39/52 is not a statistically significant quality result.**
+> no hypothesis test. **41/52 vs 39/52 is a descriptive difference; because no test was performed,
+> no statistical significance is claimed.**
 
 ### 7.3 What may and may not be claimed
 

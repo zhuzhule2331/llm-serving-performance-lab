@@ -1,0 +1,113 @@
+{
+  "stages": {
+    "A1_BF16": {
+      "mode": "BF16",
+      "tpot": {
+        "mean_ms": 25.137925,
+        "median_ms": 24.857149999999997,
+        "min_ms": 24.418,
+        "max_ms": 26.3059,
+        "n": 8
+      },
+      "ttft": {
+        "mean_ms": 60.4575875,
+        "median_ms": 60.092600000000004,
+        "min_ms": 55.0633,
+        "max_ms": 69.2301,
+        "n": 8
+      },
+      "e2e": {
+        "mean_ms": 3253.0089875,
+        "median_ms": 3216.5314,
+        "min_ms": 3170.3538,
+        "max_ms": 3397.1585,
+        "n": 8
+      }
+    },
+    "B1_VEC4": {
+      "mode": "VEC4",
+      "tpot": {
+        "mean_ms": 24.6924,
+        "median_ms": 24.570500000000003,
+        "min_ms": 23.6234,
+        "max_ms": 26.3163,
+        "n": 8
+      },
+      "ttft": {
+        "mean_ms": 57.5732125,
+        "median_ms": 58.8899,
+        "min_ms": 49.5903,
+        "max_ms": 66.5396,
+        "n": 8
+      },
+      "e2e": {
+        "mean_ms": 3193.544575,
+        "median_ms": 3171.0789999999997,
+        "min_ms": 3059.056,
+        "max_ms": 3403.9655,
+        "n": 8
+      }
+    },
+    "B2_VEC4": {
+      "mode": "VEC4",
+      "tpot": {
+        "mean_ms": 24.7333375,
+        "median_ms": 24.7501,
+        "min_ms": 23.9735,
+        "max_ms": 25.4156,
+        "n": 8
+      },
+      "ttft": {
+        "mean_ms": 56.9945375,
+        "median_ms": 55.6905,
+        "min_ms": 50.6862,
+        "max_ms": 63.5117,
+        "n": 8
+      },
+      "e2e": {
+        "mean_ms": 3198.1673124999998,
+        "median_ms": 3198.9691000000003,
+        "min_ms": 3098.7819,
+        "max_ms": 3280.1764,
+        "n": 8
+      }
+    },
+    "A2_BF16": {
+      "mode": "BF16",
+      "tpot": {
+        "mean_ms": 26.0464375,
+        "median_ms": 26.0829,
+        "min_ms": 25.1986,
+        "max_ms": 26.8336,
+        "n": 8
+      },
+      "ttft": {
+        "mean_ms": 58.704612499999996,
+        "median_ms": 57.1623,
+        "min_ms": 51.4762,
+        "max_ms": 67.7446,
+        "n": 8
+      },
+      "e2e": {
+        "mean_ms": 3366.63405,
+        "median_ms": 3372.4509500000004,
+        "min_ms": 3251.7294,
+        "max_ms": 3475.6456,
+        "n": 8
+      }
+    }
+  },
+  "pooled": {
+    "bf16_tpot_mean_ms": 25.59218125,
+    "vec4_tpot_mean_ms": 24.71286875,
+    "bf16_tpot_median_ms": 25.5773,
+    "vec4_tpot_median_ms": 24.63815,
+    "vec4_minus_bf16_mean_ms": -0.879312500000001,
+    "speed_ratio_mean": 1.0355811585006698,
+    "tpot_change_mean_pct": -3.4358638343888748,
+    "n_bf16": 16,
+    "n_vec4": 16
+  },
+  "interpretation": "Descriptive small ABBA only. Client streaming chunk timing is approximate TPOT. No statistical significance claim.",
+  "results_csv": "results.csv"
+}

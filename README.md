@@ -1,5 +1,7 @@
 # LLM Serving Performance Lab
 
+> 中文入口：[README.zh-CN.md](README.zh-CN.md)
+
 A measurement-driven investigation of how **scheduler token budget**, **concurrency**, and
 **prefix reuse** interact in vLLM — and of what changes on the GPU when they do.
 
@@ -120,20 +122,48 @@ Evidence boundary: results in `results/` are **aggregates derived from the froze
 artifacts**; they are not the raw per-request logs. The raw logs stay private (size + they
 contain host paths).
 
-## Additional study: INT8 LM Head + custom CUDA GEMV
+## INT8 LM Head study — V2 baseline and vec4 follow-up
 
-A second, separate study lives in [`int8-lm-head/`](int8-lm-head/README.md). It replaces the
-LM Head projection of the same model with a weight-only INT8 representation plus a hand-written
-CUDA GEMV, integrates it into vLLM through a `general_plugins` entry point, and measures the
-kernel level and the serving level **separately**.
+### Latest: vec4 optimization
 
-**Boundary, stated up front:** that study is single-GPU (GPU0 only), batch-1 decode, one model,
-one shape. Its kernel-level microbenchmark varied across four runs (**1.229×–1.978×**, median
-of three repeats **1.303×**); its client-side approximate-TPOT observation is **≈4.14%** with
-no significance claim. It is **not** a whole-model speedup, **not** a memory-saving result, and
-**not** a lossless-quantization claim. Full methodology, quality evaluation and limitations
-are inside that directory.
+The vec4 follow-up is a separately archived experiment on the same fixed LM Head shape
+(`[151936, 4096]`, batch≈1, single-token decode, RTX 3090 GPU0).
+
+| Layer | Result | Scope |
+|---|---|---|
+| Operator | BF16 **2.245 ms** → V2 **1.459 ms** → vec4 **1.040 ms**; BF16→vec4 **2.159×** | LM Head operator only |
+| NCU | global-load instructions **−74.7%**; LSU pipe **94.9% → 27.2%**; naïve char4 sectors **3.39× ideal**; final vec4 restores ideal; DRAM **≈882 GB/s** (**96.8%** sustained peak) | single-kernel probe |
+| Serving | BF16 **25.5922 ms** → vec4 **24.7129 ms**; client approximate TPOT **−3.44%** | 32-request ABBA, descriptive |
+
+The operator result is **not** a whole-model or serving speedup. The serving result is a
+**32-request ABBA descriptive client-side approximate TPOT** observation, with BF16 A1→A2 drift
+of ≈3.61%. No significance test was performed and no significant benefit is claimed. See:
+
+- [vec4 module and full narrative](int8-lm-head/vec4/README.md)
+- [operator result JSON](int8-lm-head/vec4/operator/final_bench_results.json)
+- [NCU key metrics](int8-lm-head/vec4/ncu/ncu_key_metrics.json)
+- [32-request serving CSV](int8-lm-head/vec4/serving/results.csv)
+
+### Historical V2 baseline
+
+The original V2 study lives in [`int8-lm-head/`](int8-lm-head/README.md). It replaces the LM
+Head projection with a weight-only INT8 representation plus a hand-written CUDA GEMV, integrates
+it into vLLM through a `general_plugins` entry point, and measures the kernel level and the
+serving level **separately**.
+
+**V2 boundary, stated up front:** single-GPU (GPU0 only), batch-1 decode, one model, one shape.
+Its kernel-level microbenchmark varied across four runs (**1.229×–1.978×**, median of three
+repeats **1.303×**); its client-side approximate-TPOT observation is **≈4.14%** with no
+significance claim. It is **not** a whole-model speedup, **not** a memory-saving result, and
+**not** a lossless-quantization claim.
+
+V2 and vec4 are **different experiments**. Do not compare the V2 96-request result with the vec4
+32-request result, add them, or multiply either by the operator ratio. Full methodology, quality
+evaluation and limitations are inside `int8-lm-head/`.
 
 ## License
 
-See [`LICENSE_NOTE.md`](LICENSE_NOTE.md).
+No `LICENSE` file is included. This does **not** prevent the repository from being public; it
+means default copyright applies and no reuse license is granted. See
+[`LICENSE_NOTE.md`](LICENSE_NOTE.md) for the third-party component notes and the author's
+license-status record.
